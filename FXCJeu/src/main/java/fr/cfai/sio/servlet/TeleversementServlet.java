@@ -49,7 +49,7 @@ public class TeleversementServlet extends HttpServlet
 		
 		String cheminImages = System.getProperty("catalina.base");
 		String separateur = System.getProperty("file.separator");
-		String nomCompletImage = cheminImages + separateur+"webapps"+separateur;
+		String nomCompletImage = cheminImages + separateur+"wtpwebapps"+separateur;
 		
 		
 		System.out.println("Constructeur nomCompletImage = "+nomCompletImage);
@@ -69,6 +69,8 @@ public class TeleversementServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		System.out.println("TeleversementServlet - DoPost");
+		
+		
 
 		Image image = null;
 		int idTest = 0;
@@ -77,10 +79,10 @@ public class TeleversementServlet extends HttpServlet
 
 		String cheminImages = System.getProperty("catalina.base");
 		String separateur = System.getProperty("file.separator");
+		String nomApp = request.getContextPath().substring(1);
 		
-//		D:\Cours\Info - COTE Francois-Xavier\Eclipse Neon\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\webapps
-	//
-		System.out.println("TeleversementServlet - catalina.base = "+System.getProperty("catalina.base")+" SEPARATEUR = "+System.getProperty("file.separator"));
+		System.out.println("TeleversementServlet - nomApp "+nomApp);
+		
 		
 		// Création du format de la date pour le fichier, il sera donc renomer
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss_");
@@ -136,7 +138,7 @@ public class TeleversementServlet extends HttpServlet
 				{
 					i++;
 					System.out.println("TeleversementServlet - else item.isFormField");
-					String nomCompletImage = cheminImages + separateur+"webapps"+separateur+ nomImage + dateImg + i + ".jpg";
+					String nomCompletImage = cheminImages + separateur+"wtpwebapps"+separateur+nomApp+separateur+"images"+separateur+nomImage + dateImg + i + ".jpg";
 					System.out.println("TeleversementServlet - nomCompletImage : " + nomCompletImage);
 					
 					String nomCompletPourBDD = nomImage + dateImg + i + ".jpg";
