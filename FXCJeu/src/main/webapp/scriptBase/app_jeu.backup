@@ -1,0 +1,930 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
+
+-- Started on 2016-11-21 20:53:46
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12355)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2231 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 181 (class 1259 OID 25552)
+-- Name: classification; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE classification (
+    id_classification integer NOT NULL,
+    libelle_classification character varying(255)
+);
+
+
+ALTER TABLE classification OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 25555)
+-- Name: commentaire; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE commentaire (
+    id_com integer NOT NULL,
+    titre_com character varying(250),
+    descript character varying(250),
+    date_com date,
+    id_utilsateur integer,
+    id_test integer
+);
+
+
+ALTER TABLE commentaire OWNER TO postgres;
+
+--
+-- TOC entry 183 (class 1259 OID 25561)
+-- Name: developpeur; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE developpeur (
+    id_dev integer NOT NULL,
+    raisonsociale_dev character varying(255)
+);
+
+
+ALTER TABLE developpeur OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 25564)
+-- Name: editeur; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE editeur (
+    id_editeur integer NOT NULL,
+    raisonsociale_editeur character varying(255)
+);
+
+
+ALTER TABLE editeur OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 25567)
+-- Name: genre; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE genre (
+    id_genre integer NOT NULL,
+    libelle_genre character varying(255)
+);
+
+
+ALTER TABLE genre OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 25570)
+-- Name: image; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE image (
+    id_image integer NOT NULL,
+    chemin_image character varying(250),
+    description_image character varying(250),
+    titre_image character varying(250),
+    id_jeu integer,
+    id_utilsateur integer,
+    id_test integer
+);
+
+
+ALTER TABLE image OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 25576)
+-- Name: jeu; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE jeu (
+    id_jeu integer NOT NULL,
+    titre_jeu character varying(255),
+    date_sortie_jeu date,
+    description character varying(500),
+    id_editeur integer,
+    id_genre integer,
+    id_dev integer,
+    id_classification integer,
+    img_jeu character varying
+);
+
+
+ALTER TABLE jeu OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 25582)
+-- Name: lire; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE lire (
+    id_jeu integer NOT NULL,
+    id_plateforme integer NOT NULL
+);
+
+
+ALTER TABLE lire OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 25585)
+-- Name: modele_eco; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE modele_eco (
+    id_modele_eco integer NOT NULL,
+    libelle_modele_eco character varying(255)
+);
+
+
+ALTER TABLE modele_eco OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 25588)
+-- Name: note; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE note (
+    id_note integer NOT NULL,
+    note double precision,
+    id_test integer
+);
+
+
+ALTER TABLE note OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 25591)
+-- Name: payer; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE payer (
+    id_jeu integer NOT NULL,
+    id_modele_eco integer NOT NULL
+);
+
+
+ALTER TABLE payer OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 25594)
+-- Name: plateforme; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE plateforme (
+    id_plateforme integer NOT NULL,
+    libelle_plateforme character varying(255)
+);
+
+
+ALTER TABLE plateforme OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 25597)
+-- Name: stocker; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE stocker (
+    id_jeu integer NOT NULL,
+    id_support integer NOT NULL
+);
+
+
+ALTER TABLE stocker OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 25600)
+-- Name: support; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE support (
+    id_support integer NOT NULL,
+    libelle_support character varying(255)
+);
+
+
+ALTER TABLE support OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 25603)
+-- Name: test; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE test (
+    id_test integer NOT NULL,
+    titre_test character varying(250),
+    date_test date,
+    nb_com integer,
+    avantage_jeu character varying(250),
+    inconvenient_jeu character varying(250),
+    description_test character varying(500),
+    id_jeu integer,
+    id_utilisateur integer,
+    note_jeu smallint
+);
+
+
+ALTER TABLE test OWNER TO postgres;
+
+--
+-- TOC entry 196 (class 1259 OID 25609)
+-- Name: utilisateur; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE utilisateur (
+    id_utilisateur integer NOT NULL,
+    login character varying(250),
+    mdp character varying(250),
+    moy_note double precision,
+    nb_com integer
+);
+
+
+ALTER TABLE utilisateur OWNER TO postgres;
+
+--
+-- TOC entry 2208 (class 0 OID 25552)
+-- Dependencies: 181
+-- Data for Name: classification; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY classification (id_classification, libelle_classification) FROM stdin;
+1	PEGI 3
+2	PEGI 7
+3	PEGI 12
+4	PEGI 16
+5	PEGI 18
+\.
+
+
+--
+-- TOC entry 2209 (class 0 OID 25555)
+-- Dependencies: 182
+-- Data for Name: commentaire; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY commentaire (id_com, titre_com, descript, date_com, id_utilsateur, id_test) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2210 (class 0 OID 25561)
+-- Dependencies: 183
+-- Data for Name: developpeur; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY developpeur (id_dev, raisonsociale_dev) FROM stdin;
+1	CD Projekt
+2	Sony
+3	Blizzard Entertainment
+4	Nintendo
+5	Maxis
+6	Dice
+7	Activision Blizzard
+8	Crystal Dynamics
+9	Bandai Namco
+10	Alkemi
+\.
+
+
+--
+-- TOC entry 2211 (class 0 OID 25564)
+-- Dependencies: 184
+-- Data for Name: editeur; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY editeur (id_editeur, raisonsociale_editeur) FROM stdin;
+1	CD Projekt RED
+2	Squaresoft
+3	Blizzard Entertainment
+4	Game Freak
+5	Grezzo
+6	Intelligent Systems
+7	Electronic Arts
+8	Eidos Interactive
+9	From Software
+10	Topware
+\.
+
+
+--
+-- TOC entry 2212 (class 0 OID 25567)
+-- Dependencies: 185
+-- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY genre (id_genre, libelle_genre) FROM stdin;
+1	Action
+2	RPG
+3	Jeu de cartes
+4	RPG Tactique
+5	Gestion
+6	FPS
+7	Shoot'em Up
+\.
+
+
+--
+-- TOC entry 2213 (class 0 OID 25570)
+-- Dependencies: 186
+-- Data for Name: image; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY image (id_image, chemin_image, description_image, titre_image, id_jeu, id_utilsateur, id_test) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2214 (class 0 OID 25576)
+-- Dependencies: 187
+-- Data for Name: jeu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY jeu (id_jeu, titre_jeu, date_sortie_jeu, description, id_editeur, id_genre, id_dev, id_classification, img_jeu) FROM stdin;
+7	Les sims 3	2009-06-04	Jeu de gestion et de simulation de vie humaine, Les Sims 3 vous donne la possibilité de gérer un ou plusieurs Sims, immergés dans une ville active, et qui entrent en interaction avec d'autres Sims. La personnalité des personnages a été approfondie grâce à un tout nouveau système, ainsi que la personnalisation du lieu de vie, plus riche et aboutie.	7	5	5	1	images\\sims3.jpg
+8	Battlefield 1	2016-10-21	Nouvel opus pour la célèbre franchise de FPS, et après plusieurs années de conflits contemporains, Battlefield 1 plonge les joueurs dans la première Guerre Mondiale. Fidèle à ses racines, cet épisode proposera une campagne solo et un mode multijoueur sur des cartes variées et destructibles.	7	6	6	5	images\\battlefield.jpg
+9	Overwatch	2016-05-24	Jeu d'action en vue à la première personne, Overwatch prend place dans un futur proche, en 2074 pour être exact. Dans des parties en 6 contre 6, le joueur incarne un héros parmi la palette proposée. Chaque personnage a des caractéristiques et des capacités particulières et un rôle défini parmi Attaque, Défense, Tank et Soutien.	3	6	7	3	images\\overwatch.jpg
+3	HearthStone : Heroes of Warcraft	2014-03-12	Jeu de cartes à collectionner en ligne, HearthStone : Heroes of Warcraft est un free-to-play qui se fonde sur l'univers de Warcraft et World of Warcraft. Le joueur peut incarner de nombreuses classes (Voleur, druide, etc) qui ont chacunes un style de jeu particulier. Armes, sorts, serviteurs seront à votre disposition pour élaborer des stratégies plus folles les unes que les autres	3	3	3	3	images\\hearthstone.jpg
+10	Tomb Raider Underworld	2008-11-21	Tomb Raider Underworld est le huitième épisode des aventure de Lara Croft. L'exploratrice essaye dans ce nouvel opus de comprendre la mystérieuse disparition de sa mère. Elle doit alors mettre la main sur le marteau de Thor et affronter de vieux démons...	8	1	8	4	images\\tombraider.jpg
+11	Dark Souls III	2016-04-12	Dark Souls 3 est un action RPG particulièrement exigeant. L'environnement, très peu accueillant, ravira les amateurs de challenges corsés. Vous y combattrez de gigantesques ennemis, qui ne feront qu'une bouchée de vous.	9	2	9	4	images\\darksoul.jpg
+1	The Witcher 3 : Wild Hunt	2015-05-19	The Witcher 3 : Wild Hunt est un Action-RPG se déroulant dans un monde ouvert. Troisième épisode de la série du même nom, inspirée des livres du polonais Andrzej Sapkowski, cet opus relate la fin de l'histoire de Geralt de Riv.	1	1	1	4	images\\the witcher.jpg
+2	Final Fantasy 10	2002-05-29	Final Fantasy X est un jeu de rôle sorti sur Playstation 2. Le monde de Spira vit dans la crainte d'une entité maléfique nommée Sin. Vous incarnez une équipe menée par le jeune Tidus dans une quête pour libérer la terre de l'oppression, uniquement possible au prix d'une invocation finale...	2	2	2	3	images\\ff10.jpg
+12	Transcripted	2016-08-31	Transcripted est un jeu à mi-chemin entre le shoot'em up et le puzzle-game. Il emprunte en effet aussi bien des mécanismes au célèbre Zuma qu'à Geometry Wars. Comprenez par là qu'il vous faudra exterminer des ennemis puis récolter des artefacts colorés. Ces derniers devront ensuite être envoyés à côté de leurs semblables pour les détruire.	10	7	10	1	images\\transcripted.jpg
+4	Pokemon Version Rouge	1999-10-08	Pokémon Rouge est un jeu de rôle sorti sur Gameboy. Dirigez un dresseur de Pokémons qui doit devenir le meilleur d'entre tous. Pour cela, capturez des créatures et faites-les évoluer pour qu'elles deviennent de plus en plus fortes et qu'elles puissent remporter la ligue Pokémon.	4	2	4	1	images\\pokemonred.jpg
+5	The Legend of Zelda : Ocarina of Time	1998-12-11	Dans The Legend of Zelda : Ocarina of Time, vous incarnez Link, un jeune Kokiri devant partir à l'aventure dans le monde menacé d'Hyrule. Au cours de son aventure, pour la première fois en 3D, il devra s'aider de divers objets, et particulièrement de l'ocarina, pour voyager dans le temps et l'espace, et ainsi vaincre Ganondorf.	5	2	4	1	images\\zeldaoot.jpg
+6	Fire Emblem : Radiant Dawn	2008-03-14	 Fire Emblem : Radiant Dawn est un jeu de rôle tactique sur Wii. Vous débutez au sein de la Brigade de l'Aube, qui affirme sa volonté de faire face à l'empire du Begnion. Dirigez vos troupes et menez de rudes combats contre l'ennemi pour rétablir une paix trop vite effacée par les belligérants. Une quarantaine de missions, quatre périodes distinctes et des batailles de plus en plus longues vous attendent.	6	4	4	3	images\\fireemblem.jpg
+\.
+
+
+--
+-- TOC entry 2215 (class 0 OID 25582)
+-- Dependencies: 188
+-- Data for Name: lire; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY lire (id_jeu, id_plateforme) FROM stdin;
+1	25
+1	21
+1	24
+2	25
+2	21
+2	16
+2	13
+2	19
+3	25
+3	26
+3	27
+4	8
+4	9
+4	11
+4	14
+4	15
+4	20
+5	3
+5	5
+5	6
+5	20
+6	5
+7	25
+7	16
+7	23
+7	20
+7	27
+7	18
+7	17
+7	5
+7	26
+8	21
+8	24
+8	25
+9	21
+9	24
+9	25
+9	26
+10	25
+10	16
+10	23
+10	26
+10	18
+10	13
+10	5
+11	21
+11	24
+11	25
+12	21
+12	24
+12	25
+12	6
+\.
+
+
+--
+-- TOC entry 2216 (class 0 OID 25585)
+-- Dependencies: 189
+-- Data for Name: modele_eco; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY modele_eco (id_modele_eco, libelle_modele_eco) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2217 (class 0 OID 25588)
+-- Dependencies: 190
+-- Data for Name: note; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY note (id_note, note, id_test) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2218 (class 0 OID 25591)
+-- Dependencies: 191
+-- Data for Name: payer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY payer (id_jeu, id_modele_eco) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2219 (class 0 OID 25594)
+-- Dependencies: 192
+-- Data for Name: plateforme; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY plateforme (id_plateforme, libelle_plateforme) FROM stdin;
+1	NES
+2	Super NES
+3	Nintendo 64
+4	Game Cube
+5	WII
+6	WII U
+7	Mega Drive
+8	Game Boy
+9	Game Boy Pocket
+10	PlayStation
+11	Game Boy Color
+12	Dreamcast
+13	PlayStation 2
+14	Game Boy Advance
+15	Game Boy Advance SP
+16	PlayStation 3
+17	PSP
+18	Nintendo DS
+19	PlayStation Vita
+20	Nintendo 3DS
+21	PlayStation 4
+22	Xbox
+23	Xbox 360
+24	Xbox One
+25	PC
+26	MAC
+27	Android
+\.
+
+
+--
+-- TOC entry 2220 (class 0 OID 25597)
+-- Dependencies: 193
+-- Data for Name: stocker; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY stocker (id_jeu, id_support) FROM stdin;
+1	1
+1	3
+2	1
+2	3
+3	3
+4	2
+4	3
+5	2
+5	3
+6	1
+7	1
+7	3
+8	1
+8	3
+9	1
+9	3
+10	1
+10	3
+11	1
+11	3
+12	1
+12	3
+\.
+
+
+--
+-- TOC entry 2221 (class 0 OID 25600)
+-- Dependencies: 194
+-- Data for Name: support; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY support (id_support, libelle_support) FROM stdin;
+1	CD
+2	Cassette
+3	Dématerialisé
+\.
+
+
+--
+-- TOC entry 2222 (class 0 OID 25603)
+-- Dependencies: 195
+-- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY test (id_test, titre_test, date_test, nb_com, avantage_jeu, inconvenient_jeu, description_test, id_jeu, id_utilisateur, note_jeu) FROM stdin;
+1	aaaa	2016-05-05	3	aaaa	aaaaa	aaaaaaaa	1	1	2
+2	bbbbb	2016-05-05	4	bbbbbbb	bbbbbbbbbbb	bbbbbbbbbbb	2	2	14
+3	cccccccccc	2016-05-05	1	cccccccccc	ccccccccccccc	cccccccccccccc	3	3	18
+\.
+
+
+--
+-- TOC entry 2223 (class 0 OID 25609)
+-- Dependencies: 196
+-- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY utilisateur (id_utilisateur, login, mdp, moy_note, nb_com) FROM stdin;
+4	yo	yoooo	\N	\N
+5	yo	yoooo	\N	\N
+6	yyyyyy	yyyyyy	\N	\N
+7	yyyyyy	yyyyyy	\N	\N
+8	tuiui	iuuyuyu	\N	\N
+9	tuiui	iuuyuyu	\N	\N
+10	gggggg	gggggg	\N	\N
+11	dreo	dreo	\N	\N
+2	mmarechet	mmarechet	15	646
+1	vmele	vmele	1	4
+3	amure	amure	14	1
+12	aa	aa	\N	\N
+13	rrr	rrr	\N	\N
+14	tytyty	tytyt	\N	\N
+15	ssdsds	sdsdsd	\N	\N
+16	zz	zz	\N	\N
+17	tt	ttt	\N	\N
+18	tyt	thth	\N	\N
+19	kljkl;kj	jkljkljk	\N	\N
+\.
+
+
+--
+-- TOC entry 2045 (class 2606 OID 25616)
+-- Name: classification_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY classification
+    ADD CONSTRAINT classification_pkey PRIMARY KEY (id_classification);
+
+
+--
+-- TOC entry 2047 (class 2606 OID 25618)
+-- Name: commentaire_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY commentaire
+    ADD CONSTRAINT commentaire_pkey PRIMARY KEY (id_com);
+
+
+--
+-- TOC entry 2049 (class 2606 OID 25620)
+-- Name: developpeur_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY developpeur
+    ADD CONSTRAINT developpeur_pkey PRIMARY KEY (id_dev);
+
+
+--
+-- TOC entry 2051 (class 2606 OID 25622)
+-- Name: editeur_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY editeur
+    ADD CONSTRAINT editeur_pkey PRIMARY KEY (id_editeur);
+
+
+--
+-- TOC entry 2053 (class 2606 OID 25624)
+-- Name: genre_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY genre
+    ADD CONSTRAINT genre_pkey PRIMARY KEY (id_genre);
+
+
+--
+-- TOC entry 2055 (class 2606 OID 25626)
+-- Name: image_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY image
+    ADD CONSTRAINT image_pkey PRIMARY KEY (id_image);
+
+
+--
+-- TOC entry 2057 (class 2606 OID 25628)
+-- Name: jeu_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY jeu
+    ADD CONSTRAINT jeu_pkey PRIMARY KEY (id_jeu);
+
+
+--
+-- TOC entry 2059 (class 2606 OID 25630)
+-- Name: lire_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY lire
+    ADD CONSTRAINT lire_pkey PRIMARY KEY (id_jeu, id_plateforme);
+
+
+--
+-- TOC entry 2061 (class 2606 OID 25632)
+-- Name: modele_eco_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY modele_eco
+    ADD CONSTRAINT modele_eco_pkey PRIMARY KEY (id_modele_eco);
+
+
+--
+-- TOC entry 2063 (class 2606 OID 25634)
+-- Name: note_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY note
+    ADD CONSTRAINT note_pkey PRIMARY KEY (id_note);
+
+
+--
+-- TOC entry 2065 (class 2606 OID 25636)
+-- Name: payer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY payer
+    ADD CONSTRAINT payer_pkey PRIMARY KEY (id_jeu, id_modele_eco);
+
+
+--
+-- TOC entry 2067 (class 2606 OID 25638)
+-- Name: plateforme_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY plateforme
+    ADD CONSTRAINT plateforme_pkey PRIMARY KEY (id_plateforme);
+
+
+--
+-- TOC entry 2069 (class 2606 OID 25640)
+-- Name: stocker_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY stocker
+    ADD CONSTRAINT stocker_pkey PRIMARY KEY (id_jeu, id_support);
+
+
+--
+-- TOC entry 2071 (class 2606 OID 25642)
+-- Name: support_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY support
+    ADD CONSTRAINT support_pkey PRIMARY KEY (id_support);
+
+
+--
+-- TOC entry 2073 (class 2606 OID 25644)
+-- Name: test_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY test
+    ADD CONSTRAINT test_pkey PRIMARY KEY (id_test);
+
+
+--
+-- TOC entry 2075 (class 2606 OID 25646)
+-- Name: utilisateurs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY utilisateur
+    ADD CONSTRAINT utilisateurs_pkey PRIMARY KEY (id_utilisateur);
+
+
+--
+-- TOC entry 2076 (class 2606 OID 25647)
+-- Name: fk_commentaire_id_test; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY commentaire
+    ADD CONSTRAINT fk_commentaire_id_test FOREIGN KEY (id_test) REFERENCES test(id_test);
+
+
+--
+-- TOC entry 2077 (class 2606 OID 25652)
+-- Name: fk_commentaire_id_utilsateur; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY commentaire
+    ADD CONSTRAINT fk_commentaire_id_utilsateur FOREIGN KEY (id_utilsateur) REFERENCES utilisateur(id_utilisateur);
+
+
+--
+-- TOC entry 2078 (class 2606 OID 25657)
+-- Name: fk_image_id_jeu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY image
+    ADD CONSTRAINT fk_image_id_jeu FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu);
+
+
+--
+-- TOC entry 2079 (class 2606 OID 25662)
+-- Name: fk_image_id_test; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY image
+    ADD CONSTRAINT fk_image_id_test FOREIGN KEY (id_test) REFERENCES test(id_test);
+
+
+--
+-- TOC entry 2080 (class 2606 OID 25667)
+-- Name: fk_image_id_utilsateur; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY image
+    ADD CONSTRAINT fk_image_id_utilsateur FOREIGN KEY (id_utilsateur) REFERENCES utilisateur(id_utilisateur);
+
+
+--
+-- TOC entry 2081 (class 2606 OID 25672)
+-- Name: fk_jeu_id_classification; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY jeu
+    ADD CONSTRAINT fk_jeu_id_classification FOREIGN KEY (id_classification) REFERENCES classification(id_classification);
+
+
+--
+-- TOC entry 2082 (class 2606 OID 25677)
+-- Name: fk_jeu_id_dev; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY jeu
+    ADD CONSTRAINT fk_jeu_id_dev FOREIGN KEY (id_dev) REFERENCES developpeur(id_dev);
+
+
+--
+-- TOC entry 2083 (class 2606 OID 25682)
+-- Name: fk_jeu_id_editeur; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY jeu
+    ADD CONSTRAINT fk_jeu_id_editeur FOREIGN KEY (id_editeur) REFERENCES editeur(id_editeur);
+
+
+--
+-- TOC entry 2084 (class 2606 OID 25687)
+-- Name: fk_jeu_id_genre; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY jeu
+    ADD CONSTRAINT fk_jeu_id_genre FOREIGN KEY (id_genre) REFERENCES genre(id_genre);
+
+
+--
+-- TOC entry 2085 (class 2606 OID 25692)
+-- Name: fk_lire_id_jeu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY lire
+    ADD CONSTRAINT fk_lire_id_jeu FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu);
+
+
+--
+-- TOC entry 2086 (class 2606 OID 25697)
+-- Name: fk_lire_id_plateforme; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY lire
+    ADD CONSTRAINT fk_lire_id_plateforme FOREIGN KEY (id_plateforme) REFERENCES plateforme(id_plateforme);
+
+
+--
+-- TOC entry 2087 (class 2606 OID 25702)
+-- Name: fk_note_id_test; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY note
+    ADD CONSTRAINT fk_note_id_test FOREIGN KEY (id_test) REFERENCES test(id_test);
+
+
+--
+-- TOC entry 2088 (class 2606 OID 25707)
+-- Name: fk_payer_id_jeu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY payer
+    ADD CONSTRAINT fk_payer_id_jeu FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu);
+
+
+--
+-- TOC entry 2089 (class 2606 OID 25712)
+-- Name: fk_payer_id_modele_eco; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY payer
+    ADD CONSTRAINT fk_payer_id_modele_eco FOREIGN KEY (id_modele_eco) REFERENCES modele_eco(id_modele_eco);
+
+
+--
+-- TOC entry 2090 (class 2606 OID 25717)
+-- Name: fk_stocker_id_jeu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY stocker
+    ADD CONSTRAINT fk_stocker_id_jeu FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu);
+
+
+--
+-- TOC entry 2091 (class 2606 OID 25722)
+-- Name: fk_stocker_id_support; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY stocker
+    ADD CONSTRAINT fk_stocker_id_support FOREIGN KEY (id_support) REFERENCES support(id_support);
+
+
+--
+-- TOC entry 2092 (class 2606 OID 25727)
+-- Name: fk_test_id_jeu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY test
+    ADD CONSTRAINT fk_test_id_jeu FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu);
+
+
+--
+-- TOC entry 2093 (class 2606 OID 25732)
+-- Name: fk_test_id_utilsateur; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY test
+    ADD CONSTRAINT fk_test_id_utilsateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur);
+
+
+--
+-- TOC entry 2230 (class 0 OID 0)
+-- Dependencies: 7
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-11-21 20:53:46
+
+--
+-- PostgreSQL database dump complete
+--
+
