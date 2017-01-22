@@ -19,7 +19,7 @@
 					<c:forEach items="${LISTE_TESTS}" var="test">
 						<div class="blog-left-grid-left">
 							<h3>
-								<a href="TestServlet?idTest=${test.idTest}">${test.titreTest}</a>
+								<a href="TestNewServlet?idTest=${test.idTest}">${test.titreTest}</a>
 							</h3>
 						</div>
 												<div class="blog-left-grid-right">
@@ -30,7 +30,7 @@
 						<div class="clearfix"></div>
 
 						<div class="col-xs-12 col-sm-3">
-							<a href="TestServlet?idTest=${test.idTest}"><img
+							<a href="TestNewServlet?idTest=${test.idTest}"><img
 								src="${test.jeu.imgJeu}" alt=" "
 								class="img-responsive img-rounded" /></a>
 						</div>
