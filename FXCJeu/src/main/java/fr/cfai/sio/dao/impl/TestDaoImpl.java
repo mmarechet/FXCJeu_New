@@ -93,7 +93,7 @@ public class TestDaoImpl implements TestDao
 
 					try
 					{
-						CommentaireDao commentaireDaoImpl = new CommentaireDaoImpl();
+						CommentaireDao commentaireDaoImpl = new CommentaireNewDaoImpl();
 						List<Commentaire> listeCommentaires = new ArrayList<>();
 						listeCommentaires = commentaireDaoImpl.findCommentaireByIDTest(id_Test);
 						test.setListeCommentaires(listeCommentaires);
@@ -181,7 +181,7 @@ public class TestDaoImpl implements TestDao
 
 					try
 					{
-						CommentaireDao commentaireDaoImpl = new CommentaireDaoImpl();
+						CommentaireDao commentaireDaoImpl = new CommentaireNewDaoImpl();
 						List<Commentaire> listeCommentaires = new ArrayList<>();
 						listeCommentaires = commentaireDaoImpl.findCommentaireByTest(test);
 						test.setListeCommentaires(listeCommentaires);
@@ -273,7 +273,7 @@ public class TestDaoImpl implements TestDao
 
 					try
 					{
-						CommentaireDao commentaireDaoImpl = new CommentaireDaoImpl();
+						CommentaireDao commentaireDaoImpl = new CommentaireNewDaoImpl();
 						List<Commentaire> listeCommentaires = new ArrayList<>();
 						listeCommentaires = commentaireDaoImpl.findCommentaireByIDTest(id_Test);
 						test.setListeCommentaires(listeCommentaires);

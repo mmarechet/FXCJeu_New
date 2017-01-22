@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import fr.cfai.sio.business.Commentaire;
 import fr.cfai.sio.dao.CommentaireDao;
-import fr.cfai.sio.dao.impl.CommentaireDaoImpl;
+import fr.cfai.sio.dao.impl.CommentaireNewDaoImpl;
 import fr.cfai.sio.service.CommentaireService;
 
 public class CommentaireServiceImpl implements CommentaireService {
@@ -16,7 +16,7 @@ public class CommentaireServiceImpl implements CommentaireService {
 	public CommentaireServiceImpl() throws Exception {
 		super();
 		// TODO Auto-generated constructor stub
-		this.commentaireDaoImpl = new CommentaireDaoImpl();
+		this.commentaireDaoImpl = new CommentaireNewDaoImpl();
 	}
 
 	@Override
