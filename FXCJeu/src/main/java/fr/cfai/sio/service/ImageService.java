@@ -10,4 +10,6 @@ public interface ImageService
 	
 	public List<Image> recupererListeImages();
 	
+	public List<Image> recupererListeImagesParTest(int idTest);
+	
 }

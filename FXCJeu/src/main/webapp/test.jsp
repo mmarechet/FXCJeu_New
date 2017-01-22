@@ -23,6 +23,8 @@
 
 
 			<div class="Buttons test-align-center">
+				<h3 class="ghj"><a href="TeleversementServlet?idTest=${TEST.idTest}">Voir les images du test</a></h3>
+				<br>
 				<h3 class="ghj">Caractéristiques du jeu</h3>
 				<h3>
 					<span class="label label-default">${TEST.jeu.editeur.getRaisonSociale()}</span>

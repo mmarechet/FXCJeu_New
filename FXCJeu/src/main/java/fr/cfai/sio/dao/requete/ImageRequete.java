@@ -7,4 +7,6 @@ public class ImageRequete
 	public static final String ID_MAX_IMAGE = "SELECT MAX (id_image) FROM image";
 	
 	public static final String FIND_ALL_IMAGES="SELECT * from image";
+	
+	public static final String FIND_ALL_IMAGES_BY_TEST="SELECT * from image WHERE id_test=?";
 }

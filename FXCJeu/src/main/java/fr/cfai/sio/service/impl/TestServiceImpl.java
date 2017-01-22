@@ -46,16 +46,11 @@ public class TestServiceImpl implements TestService
 	public int ajouterTest(String titre, Date date, String avantage, String inconvenient, String description, short note, int id_Jeu,
 			int id_Utilisateur, String contenu)
 	{
-		int statut = 0;
+		int idTest = 0;
 
-		if (testDaoImpl.addTest(titre, date, avantage, inconvenient, description, note, id_Jeu, id_Utilisateur, contenu) != 0)
-		{
+		idTest=testDaoImpl.addTest(titre, date, avantage, inconvenient, description, note, id_Jeu, id_Utilisateur, contenu);
 
-			statut = 1;
-
-		}
-
-		return statut;
+		return idTest;
 	}
 
 	@Override

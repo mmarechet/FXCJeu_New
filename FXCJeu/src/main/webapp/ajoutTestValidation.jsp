@@ -10,7 +10,7 @@
 	media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	
-	<meta http-equiv="refresh" content="2; URL=ListeTestsServlet?action=maj">
+	<meta http-equiv="refresh" content="2; URL=TestServlet?idTest=${idTest}">
 </head>
 
 

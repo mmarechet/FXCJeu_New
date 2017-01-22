@@ -16,7 +16,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import fr.cfai.sio.business.Image;
 import fr.cfai.sio.service.ImageService;
+import fr.cfai.sio.service.TestService;
 import fr.cfai.sio.service.impl.ImageServiceImpl;
+import fr.cfai.sio.service.impl.TestServiceImpl;
 
 /**
  * Servlet implementation class TeleversementServlet
@@ -24,7 +26,7 @@ import fr.cfai.sio.service.impl.ImageServiceImpl;
 public class TeleversementServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-
+	private TestService testServiceImpl;
 	private ImageService imageServiceImpl;
 
 	/**
@@ -35,6 +37,7 @@ public class TeleversementServlet extends HttpServlet
 		super();
 		System.out.println("Constructeur TeleversementServlet");
 		this.imageServiceImpl = new ImageServiceImpl();
+		this.testServiceImpl = new TestServiceImpl();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,20 +48,22 @@ public class TeleversementServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		List<Image> listeImages = new ArrayList<>();
-		listeImages=imageServiceImpl.recupererListeImages();
+	
+		int id_Test=0;
 		
+		id_Test=Integer.parseInt(request.getParameter("idTest"));
+		
+		listeImages = imageServiceImpl.recupererListeImagesParTest(id_Test);
+
 		String cheminImages = System.getProperty("catalina.base");
 		String separateur = System.getProperty("file.separator");
-		String nomCompletImage = cheminImages + separateur+"wtpwebapps"+separateur;
-		
-		
-		System.out.println("Constructeur nomCompletImage = "+nomCompletImage);
-		
+		String nomCompletImage = cheminImages + separateur + "wtpwebapps" + separateur;
+
+		System.out.println("Constructeur nomCompletImage = " + nomCompletImage);
+
 		request.setAttribute("LISTE_IMAGE", listeImages);
 		request.setAttribute("CHEMIN", nomCompletImage);
-		
-		
-		
+
 		request.getRequestDispatcher("/listeImage.jsp").forward(request, response);
 	}
 
@@ -68,22 +73,30 @@ public class TeleversementServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		String titre = null;
+		Date date = new Date();
+		String avantage = null;
+		String inconvenient = null;
+		String description = null;
+		short note = 0;
+		int id_Jeu = 0;
+		int id_Utilisateur = 0;
+		String contenu = null;
+
 		System.out.println("TeleversementServlet - DoPost");
-		
-		
 
 		Image image = null;
 		int idTest = 0;
 		String nomImage = "Img_";
-	//	String cheminImages = "D:\\Cours\\GIT JAVA\\FXC jeu\\src\\main\\webapp\\images\\";
+		// String cheminImages = "D:\\Cours\\GIT JAVA\\FXC
+		// jeu\\src\\main\\webapp\\images\\";
 
 		String cheminImages = System.getProperty("catalina.base");
 		String separateur = System.getProperty("file.separator");
 		String nomApp = request.getContextPath().substring(1);
-		
-		System.out.println("TeleversementServlet - nomApp "+nomApp);
-		
-		
+
+		System.out.println("TeleversementServlet - nomApp " + nomApp);
+
 		// Création du format de la date pour le fichier, il sera donc renomer
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss_");
 		String dateImg = dateFormat.format(new Date());
@@ -110,6 +123,7 @@ public class TeleversementServlet extends HttpServlet
 		if (items != null)
 		{
 			System.out.println("TeleversementServlet - Liste Items non null");
+
 			Iterator<FileItem> iter = (Iterator<FileItem>) items.iterator();
 			int i = 0;
 			while (iter.hasNext())
@@ -124,31 +138,73 @@ public class TeleversementServlet extends HttpServlet
 					String nomChamp = item.getFieldName();
 					String valeurChamp = item.getString();
 
-					if (nomChamp.equals("ID_TEST"))
+					switch (nomChamp)
 					{
-						idTest = Integer.parseInt(item.getString());
-					}
-
-					if (nomChamp.equals("NOM_IMAGE"))
-					{
+					case "ID_TEST":
+						idTest = Integer.parseInt(valeurChamp);
+						break;
+					case "titre":
+						titre = valeurChamp;
+						break;
+					case "avantage":
+						avantage = valeurChamp;
+						break;
+					case "inconvenient":
+						inconvenient = valeurChamp;
+						break;
+					case "description":
+						description = valeurChamp;
+						break;
+					case "notes":
+						note = Short.parseShort(valeurChamp);
+						break;
+					case "jeux":
+						id_Jeu = Integer.parseInt(valeurChamp);
+						break;
+					case "auteur":
+						id_Utilisateur = Integer.parseInt(valeurChamp);
+						break;
+					case "contenu":
+						contenu = valeurChamp;
+						break;
+					case "NOM_IMAGE":
 						nomImage = valeurChamp;
+						break;
+					default:
+						break;
 					}
 				}
 				else
 				{
 					i++;
 					System.out.println("TeleversementServlet - else item.isFormField");
-					String nomCompletImage = cheminImages + separateur+"wtpwebapps"+separateur+nomApp+separateur+"images"+separateur+nomImage + dateImg + i + ".jpg";
+					String nomCompletImage = cheminImages + separateur + "wtpwebapps" + separateur + nomApp + separateur + "images" + separateur
+							+ nomImage + dateImg + i + ".jpg";
 					System.out.println("TeleversementServlet - nomCompletImage : " + nomCompletImage);
-					
+
 					String nomCompletPourBDD = nomImage + dateImg + i + ".jpg";
 					java.io.File fichierATeleverser = new java.io.File(nomCompletImage);
 
 					try
 					{
+						if(idTest==0)
+						{
+							System.out.println("TeleversementServlet - idTest=0");
+							System.out.println("TeleversementServlet - titre ="+titre);
+							System.out.println("TeleversementServlet - avantage ="+avantage);
+							System.out.println("TeleversementServlet - inconvenient ="+inconvenient);
+							System.out.println("TeleversementServlet - description ="+description);
+							System.out.println("TeleversementServlet - note ="+note);
+							System.out.println("TeleversementServlet - id_Jeu ="+id_Jeu);
+							System.out.println("TeleversementServlet - id_Utilisateur ="+id_Utilisateur);
+							System.out.println("TeleversementServlet - contenu ="+contenu);
+							idTest=testServiceImpl.ajouterTest(titre, date, avantage, inconvenient, description, note, id_Jeu, id_Utilisateur, contenu);
+						}
+						
 						item.write(fichierATeleverser);
-						image = imageServiceImpl.ajouterImage(nomCompletPourBDD, 1);
-						//image = imageServiceImpl.ajouterImage(nomCompletImage, 1);
+						image = imageServiceImpl.ajouterImage(nomCompletPourBDD, idTest);
+						// image =
+						// imageServiceImpl.ajouterImage(nomCompletImage, 1);
 
 					}
 					catch (Exception e)
@@ -161,7 +217,8 @@ public class TeleversementServlet extends HttpServlet
 			} // End of while
 			System.out.println("TeleversementServlet - Fin du while");
 		}
-
+		request.setAttribute("idTest", idTest);
+		request.getRequestDispatcher("/ajoutTestValidation.jsp").forward(request, response);
 	}
 
 }

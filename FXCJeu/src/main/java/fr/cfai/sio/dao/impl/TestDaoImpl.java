@@ -312,7 +312,6 @@ public class TestDaoImpl implements TestDao
 		ResultSet resultat = null;
 		PreparedStatement preparedStatement = null;
 		int idMax = 0;
-	
 		
 	//	java.sql.Date dateSql;
 		//dateSql=(java.sql.Date) dateCom;
@@ -360,7 +359,7 @@ public class TestDaoImpl implements TestDao
 		{
 			ConnexionBDD.close(statement, preparedStatement, resultat);
 		}
-		return statut;
+		return idMax;
 	}
 
 	public Jeu getJeuByID(int id)

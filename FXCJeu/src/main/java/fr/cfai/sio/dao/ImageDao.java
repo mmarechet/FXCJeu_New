@@ -8,4 +8,6 @@ public interface ImageDao
 	public int addImage(String chemin, int idTest);
 	
 	public List<Image> findAllImages();
+	
+	public List<Image> findAllImagesByTest(int idTest);
 }

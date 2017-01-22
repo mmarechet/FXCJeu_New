@@ -12,7 +12,7 @@
 				<!-- Gros bloc de tests de jeux -->
 				<div class="blog-left">
 					<h1> Création d'un test</h1>
-					<form action="AjoutTestServlet"  method="POST"
+					<form action="TeleversementServlet" enctype="multipart/form-data" method="POST"
 						name="formulaireAjoutTest" class="form-style-7">
 						<ul>
 							<li>
@@ -68,9 +68,11 @@
 							
 							<input type="hidden" name="auteur" value="${idUtilisateur}">
 							
-							<label>Ajouter des images :</label>
-							<input type="file" name="NOM_IMAGE" multiple>
-
+							<li>
+								<label>Ajouter des images :</label>
+								<input type="file" name="NOM_IMAGE" multiple>
+								<span>Selectionnez l'image principal du test</span>							
+							</li>
 							<li><input type="submit" value="Envoyer"></li>
 						</ul>
 

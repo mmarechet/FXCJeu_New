@@ -45,6 +45,12 @@ public class Image
 		this.cheminImage=chemin;
 	}
 
+	public Image(int id_Image, String chemin_Image)
+	{
+		this.idImage=id_Image;
+		this.cheminImage=chemin_Image;
+	}
+
 	/**
 	 * Getteur ID de l'image
 	 * 

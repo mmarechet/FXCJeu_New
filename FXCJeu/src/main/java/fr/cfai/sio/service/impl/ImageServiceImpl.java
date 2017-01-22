@@ -1,5 +1,6 @@
 package fr.cfai.sio.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import fr.cfai.sio.business.Image;
 import fr.cfai.sio.dao.ImageDao;
@@ -8,12 +9,11 @@ import fr.cfai.sio.service.ImageService;
 
 public class ImageServiceImpl implements ImageService
 {
-private ImageDao imageDaoImpl;
-private List<Image> listeImages;
-	
+	private ImageDao imageDaoImpl;
+
 	public ImageServiceImpl() throws Exception
 	{
-		//	System.out.println("Constructeur ImageServiceImpl");
+		// System.out.println("Constructeur ImageServiceImpl");
 		super();
 		this.imageDaoImpl = new ImageDaoImpl();
 	}
@@ -25,7 +25,7 @@ private List<Image> listeImages;
 
 		if (imageDaoImpl.addImage(chemin, idTest) != 0)
 		{
-			image=new Image(chemin);
+			image = new Image(chemin);
 		}
 
 		return image;
@@ -34,10 +34,22 @@ private List<Image> listeImages;
 	@Override
 	public List<Image> recupererListeImages()
 	{
-		
-			listeImages = imageDaoImpl.findAllImages();
-			return listeImages;
-		
+		List<Image> listeImages = new ArrayList<>();
+
+		listeImages = imageDaoImpl.findAllImages();
+
+		return listeImages;
+
+	}
+
+	@Override
+	public List<Image> recupererListeImagesParTest(int idTest)
+	{
+		List<Image> listeImages = new ArrayList<>();
+
+		listeImages = imageDaoImpl.findAllImagesByTest(idTest);
+				
+		return listeImages;
 	}
 
 }
