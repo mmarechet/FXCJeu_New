@@ -26,7 +26,7 @@
 		</p>
 
 		<p>
-			Modele Economique :
+			Modele Economique test :
 			<c:forEach items="${JEU.listeModeleEconomiques}"
 				var="modeleEconomique">
 		${modeleEconomique.getLibelleModeleEco()},
