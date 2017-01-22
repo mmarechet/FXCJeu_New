@@ -104,27 +104,13 @@
     <url-pattern>/CommentaireServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <display-name>TestServlet</display-name>
-    <servlet-name>TestServlet</servlet-name>
-    <servlet-class>fr.cfai.sio.servlet.TestServlet</servlet-class>
+    <display-name>TestNewServlet</display-name>
+    <servlet-name>TestNewServlet</servlet-name>
+    <servlet-class>fr.cfai.sio.servlet.TestNewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/TestServlet</url-pattern>
-  </servlet-mapping>
-   <servlet>
-    <display-name>AjoutTestServletNew</display-name>
-    <servlet-name>AjoutTestServletNew</servlet-name>
-    <servlet-class>fr.cfai.sio.servlet.AjoutTestServletNew</servlet-class>
-    <multipart-config>
-        <max-file-size>10485760</max-file-size> <!-- 10 Mo -->
-        <max-request-size>52428800</max-request-size> <!-- 5 x 10 Mo -->
-        <file-size-threshold>52428800</file-size-threshold> <!-- 5 Mo -->
-    </multipart-config>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AjoutTestServletNew</servlet-name>
-    <url-pattern>/AjoutTestServletNew</url-pattern>
+    <servlet-name>TestNewServlet</servlet-name>
+    <url-pattern>/TestNewServlet</url-pattern>
   </servlet-mapping>
   <error-page>
     <error-code>500</error-code>

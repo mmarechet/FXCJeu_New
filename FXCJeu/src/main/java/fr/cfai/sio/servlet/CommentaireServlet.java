@@ -60,7 +60,7 @@ public class CommentaireServlet extends HttpServlet {
 			}
 
 			else {
-				response.sendRedirect("TestServlet?idTest=" + idTest);
+				response.sendRedirect("TestNewServlet?idTest=" + idTest);
 			}
 		}
 
@@ -70,7 +70,7 @@ public class CommentaireServlet extends HttpServlet {
 
 				request.getRequestDispatcher("pageErreur.jsp").forward(request, response);
 			} else {
-				response.sendRedirect("TestServlet?idTest=" + idTest);
+				response.sendRedirect("TestNewServlet?idTest=" + idTest);
 			}
 
 		}
