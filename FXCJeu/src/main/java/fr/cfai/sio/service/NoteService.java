@@ -7,5 +7,7 @@ public interface NoteService
 {
 
 	public List<Note> recupereListeNotes();
+	
+	public int ajouterNotePourTest(int note, int idTest);
 
 }

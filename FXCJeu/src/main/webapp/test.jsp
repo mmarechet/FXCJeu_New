@@ -131,13 +131,18 @@
 
 					<h3>Laisser un commentaire</h3>
 					<div class="table-form">
-						<form name="CommentaireServlet" action="CommentaireServlet"
-							method="POST">
-							<input name="AuteurComm" type="text" class="textbox"
-								value="${loginUtilisateur}" readOnly="readOnly"> <input
-								type="hidden" name="Utilisateur" value="${idUtilisateur}">
+						<form name="CommentaireServlet" action="CommentaireServlet"	method="POST">
+							<input name="AuteurComm" type="text" class="textbox" value="${loginUtilisateur}" readOnly="readOnly"> 
+							<input type="hidden" name="Utilisateur" value="${idUtilisateur}">
 							<input type='hidden' name="Test" value="${TEST.idTest}">
 							<textarea name="ContenuCom">Saisissez ici votre commentaire.</textarea>
+							<br>
+							<label>Selectionner la note du test</label>
+							<select name="notes">
+								<c:forEach begin="0" end="20" var="i">
+									<option  value="${i}">${i}</option>
+								</c:forEach>
+							</select> 
 							<input type="submit" value="Send">
 						</form>
 					</div>

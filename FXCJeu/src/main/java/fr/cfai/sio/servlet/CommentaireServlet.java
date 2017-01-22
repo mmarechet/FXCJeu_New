@@ -12,7 +12,8 @@ import fr.cfai.sio.service.impl.CommentaireServiceImpl;
 /**
  * Servlet implementation class CommentaireServlet
  */
-public class CommentaireServlet extends HttpServlet {
+public class CommentaireServlet extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
 	private CommentaireService commentaireServiceImpl;
 	// private Commentaire commentaire;
@@ -20,7 +21,8 @@ public class CommentaireServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CommentaireServlet() throws Exception {
+	public CommentaireServlet() throws Exception
+	{
 		super();
 		// TODO Auto-generated constructor stub
 		this.commentaireServiceImpl = new CommentaireServiceImpl();
@@ -30,8 +32,8 @@ public class CommentaireServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 
 		// TODO Auto-generated method stub
 
@@ -41,8 +43,8 @@ public class CommentaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		// TODO Auto-generated method stub
 
 		int idUtilisateur = Integer.parseInt(request.getParameter("Utilisateur"));
@@ -52,24 +54,30 @@ public class CommentaireServlet extends HttpServlet {
 		String contenuReponse = request.getParameter("ContenuReponse");
 		int idCom = commentaireServiceImpl.recupererIDMaxCommentaire();
 
-		if (request.getParameter("Commentaire") != null) {
+		if (request.getParameter("Commentaire") != null)
+		{
 			int idCommentaire = Integer.parseInt(request.getParameter("Commentaire"));
-			if (commentaireServiceImpl.ajouterReponseCommentaire(idCom, contenuReponse, dateCom, idTest, idUtilisateur,
-					idCommentaire) == null) {
+			if (commentaireServiceImpl.ajouterReponseCommentaire(idCom, contenuReponse, dateCom, idTest, idUtilisateur, idCommentaire) == null)
+			{
 				request.getRequestDispatcher("pageErreur.jsp").forward(request, response);
 			}
 
-			else {
+			else
+			{
 				response.sendRedirect("TestNewServlet?idTest=" + idTest);
 			}
 		}
 
-		else {
+		else
+		{
 
-			if (commentaireServiceImpl.ajouterCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur) == 0) {
+			if (commentaireServiceImpl.ajouterCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur) == 0)
+			{
 
 				request.getRequestDispatcher("pageErreur.jsp").forward(request, response);
-			} else {
+			}
+			else
+			{
 				response.sendRedirect("TestNewServlet?idTest=" + idTest);
 			}
 

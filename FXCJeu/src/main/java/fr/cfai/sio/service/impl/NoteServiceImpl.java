@@ -11,33 +11,38 @@ public class NoteServiceImpl implements NoteService
 
 	private NoteDao noteDaoImpl;
 	private List<Note> listeNotes;
-	
-	
-	
+
 	public NoteServiceImpl()
 	{
 		super();
-	//	System.out.println("Constructeur NoteServiceImpl");
-
 		this.noteDaoImpl = new NoteDaoImpl();
 	}
-
-
 
 	@Override
 	public List<Note> recupereListeNotes()
 	{
 		if (listeNotes == null)
 		{
-			System.out.println("ServiceNOTE : Passe par le if, liste null");
 			listeNotes = noteDaoImpl.findAllNotes();
 			return listeNotes;
 		}
 		else
 		{
-			System.out.println("ServiceNOTE : Passe par le else, liste not null");
 			return listeNotes;
 		}
+	}
+
+	@Override
+	public int ajouterNotePourTest(int note, int idTest)
+	{
+		int statut = 0;
+		
+		if (noteDaoImpl.addNoteForTest(note, idTest) != 0)
+		{
+			statut = 1;
+		}
+		
+		return statut;
 	}
 
 }

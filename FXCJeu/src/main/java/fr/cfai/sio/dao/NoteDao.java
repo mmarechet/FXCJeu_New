@@ -8,4 +8,6 @@ public interface NoteDao
 	public List<Note> findAllNotes();
 	
 	public List<Note> findAllNotesByTest(int idTest);
+	
+	public int addNoteForTest(int note, int idTest);
 }
