@@ -35,8 +35,8 @@
 								tests</a></li>
 						<li class="hvr-bounce-to-bottom"><a href="ListeJeuxServlet">Les
 								jeux </a></li>
-						<li class="hvr-bounce-to-bottom"><a href="ListeCommentaireServlet">Les
-								Commentaires</a></li>
+<!-- 						<li class="hvr-bounce-to-bottom"><a href="ListeCommentaireServlet">Les
+								Commentaires</a></li> -->
 					</ul>
 				</c:if>
 				<div class="sign-in">

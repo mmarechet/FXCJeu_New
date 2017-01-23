@@ -14,6 +14,8 @@
 				les jeux disponibles ! Bien entendu, vous serez en mesure de créer
 				un test parmi les jeux que nous proposons. Amusez-vous bien sur
 				TestiJeux !</div>
+			<img class="img-responsiveTest center-block"
+				src="images/accueil.jpg" alt=" " />
 		</div>
 
 	</div>
