@@ -73,7 +73,7 @@
 			<div class="alert alert-danger" role="alert">
 				<strong>Inconvénients</strong> ${TEST.inconvenientJeu}
 			</div>
-
+<c:if test="${auteur == auteur1}">
 			<!-- Permet d'ajouter des images seulement si on est l'auteur du test -->
 			<span>Ajouter une image : </span>
 
@@ -84,7 +84,7 @@
 				<input type="file" name="NOM_IMAGE" multiple> <br> <input
 					type="submit" name="submit" id="sumbit" value="Envoyer">
 			</form>
-
+</c:if>
 
 			<!-- Commentaires -->
 			<div class="comment-grid-top">
@@ -111,7 +111,7 @@
 											type="hidden" name="Commentaire"
 											value="${commentaire.idCom }">
 										<textarea rows="3" cols="50" name="ContenuReponse"></textarea>
-										<input type="submit" value="Send">
+										<input type="submit" value="Envoyer">
 									</form>
 								</div>
 							</ul>
@@ -148,10 +148,10 @@
 							<textarea name="ContenuCom">Saisissez ici votre commentaire.</textarea>
 							<br> <label>Selectionner la note du test</label> <select
 								name="notes">
-								<c:forEach begin="0" end="20" var="i">
+								<c:forEach begin="0" end="5" var="i">
 									<option value="${i}">${i}</option>
 								</c:forEach>
-							</select> <input type="submit" value="Send">
+							</select> <input type="submit" value="Envoyer">
 						</form>
 					</div>
 				</c:if>
