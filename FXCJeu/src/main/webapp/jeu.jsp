@@ -81,7 +81,7 @@
 			<div class="artical-links">
 				<ul>
 					<li><small> </small><span>Date de sortie :</span></li>
-					<li><small> </small><span>${JEU.dateSortieJeu} </span></li>
+					<li><small> </small><span>Date de sortie :${JEU.dateSortieJeu} </span></li>
 
 				</ul>
 			</div>

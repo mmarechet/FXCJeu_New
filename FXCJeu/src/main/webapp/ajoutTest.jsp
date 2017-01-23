@@ -27,8 +27,8 @@
 
 							<li>
 								<label>Titre</label> 
-								<input type="text" name="titre" required="obligatoire">
-								<span>Entrez ici le titre du jeu.</span>
+								<input type="text" name="titre" required="obligatoire" onblur="verifTitre(this)">
+								<span>Entrez ici le titre du test.</span>
 							</li>
 							
 							<li>
