@@ -57,7 +57,7 @@ public class CommentaireServlet extends HttpServlet
 		if (request.getParameter("Commentaire") != null)
 		{
 			int idCommentaire = Integer.parseInt(request.getParameter("Commentaire"));
-			if (commentaireServiceImpl.ajouterReponseCommentaire(idCom, contenuReponse, dateCom, idTest, idUtilisateur, idCommentaire) == null)
+			if (commentaireServiceImpl.ajouterReponseCommentaire(idCom, contenuReponse, dateCom, idTest, idUtilisateur, idCommentaire) != null)
 			{
 				request.getRequestDispatcher("pageErreur.jsp").forward(request, response);
 			}
