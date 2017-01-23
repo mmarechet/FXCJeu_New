@@ -9,7 +9,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<meta http-equiv="refresh" content="3; URL=index.jsp">
+	<meta http-equiv="refresh" content="3; URL=accueil.jsp">
 	
 </head>
 
