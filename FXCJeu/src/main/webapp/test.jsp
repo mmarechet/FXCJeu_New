@@ -5,6 +5,8 @@
 
 
 		<c:set var="auteur" scope="session" value="${idUtilisateur}" />
+
+
 		<%-- 		<c:out value="${auteur}" /> --%>
 		<c:set var="auteur1" scope="session"
 			value="${TEST.utilisateur.getIdUtilisateur()}" />
@@ -23,7 +25,10 @@
 
 
 			<div class="Buttons test-align-center">
-				<h3 class="ghj"><a href="TeleversementServlet?idTest=${TEST.idTest}">Voir les images du test</a></h3>
+				<h3 class="ghj">
+					<a href="TeleversementServlet?idTest=${TEST.idTest}">Voir les
+						images du test</a>
+				</h3>
 				<br>
 				<h3 class="ghj">Caractéristiques du jeu</h3>
 				<h3>
@@ -86,15 +91,18 @@
 				<h3>Responses</h3>
 				<div class="comments-top-top">
 					<div class="top-comment-left"></div>
-
+					
 					<c:forEach items="${TEST.getListeCommentaires()}" var="commentaire">
+
+						
+					
 						<div class="top-comment-right">
 							<ul>
 								<li><span class="left-at">${commentaire.utilisateur.login}</span></li>
 								<li><span class="right-at">${commentaire.dateCom}</span></li>
 								<li><button class="reply" type="button"
-										onclick="toggle_div(this,'id_du_div');">Reply</button></li>
-								<div id="id_du_div" style="display: none;">
+										onclick="toggle_div(this,'commentaire-${commentaire.idCom}');">Répondre</button></li>
+								<div id="commentaire-${commentaire.idCom }" +  style="display: none;">
 									<form name="ReponseCommentaireServlet"
 										action="CommentaireServlet" method="POST">
 										<input type="hidden" name="Utilisateur"
@@ -112,11 +120,11 @@
 						<c:forEach items="${commentaire.getListeCommentairesReponses()}"
 							var="commentaireReponse">
 							<div class="top-comment-right">
-							<ul>
-								<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
-								<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
-							</ul>
-							<p>${commentaireReponse.contenuCom}</p>
+								<ul>
+									<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
+									<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
+								</ul>
+								<p>${commentaireReponse.contenuCom}</p>
 							</div>
 						</c:forEach>
 					</c:forEach>
@@ -131,19 +139,19 @@
 
 					<h3>Laisser un commentaire</h3>
 					<div class="table-form">
-						<form name="CommentaireServlet" action="CommentaireServlet"	method="POST">
-							<input name="AuteurComm" type="text" class="textbox" value="${loginUtilisateur}" readOnly="readOnly"> 
-							<input type="hidden" name="Utilisateur" value="${idUtilisateur}">
+						<form name="CommentaireServlet" action="CommentaireServlet"
+							method="POST">
+							<input name="AuteurComm" type="text" class="textbox"
+								value="${loginUtilisateur}" readOnly="readOnly"> <input
+								type="hidden" name="Utilisateur" value="${idUtilisateur}">
 							<input type='hidden' name="Test" value="${TEST.idTest}">
 							<textarea name="ContenuCom">Saisissez ici votre commentaire.</textarea>
-							<br>
-							<label>Selectionner la note du test</label>
-							<select name="notes">
+							<br> <label>Selectionner la note du test</label> <select
+								name="notes">
 								<c:forEach begin="0" end="20" var="i">
-									<option  value="${i}">${i}</option>
+									<option value="${i}">${i}</option>
 								</c:forEach>
-							</select> 
-							<input type="submit" value="Send">
+							</select> <input type="submit" value="Send">
 						</form>
 					</div>
 				</c:if>
