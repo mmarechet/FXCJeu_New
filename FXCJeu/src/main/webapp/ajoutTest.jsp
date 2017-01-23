@@ -28,7 +28,7 @@
 							<li>
 								<label>Titre</label> 
 								<input type="text" name="titre" required>
-								<span>Entrez ici le titre du jeu.</span>
+								<span>Entrez ici le titre du test.</span>
 							</li>
 							
 							<li>
