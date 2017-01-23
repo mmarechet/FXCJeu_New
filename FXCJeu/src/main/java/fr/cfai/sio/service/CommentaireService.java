@@ -15,7 +15,7 @@ public interface CommentaireService {
 	
 	public int recupererIDMaxCommentaire();
 
-	public int ajouterCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur);
+	public int ajouterCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur,int valueNote);
 
 
 	Commentaire ajouterReponseCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur,

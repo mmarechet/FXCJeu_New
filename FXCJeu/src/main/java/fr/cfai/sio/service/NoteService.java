@@ -8,6 +8,8 @@ public interface NoteService
 
 	public List<Note> recupereListeNotes();
 	
-	public int ajouterNotePourTest(int note, int idTest);
+	public Note ajouterNotePourTest(int note, int idTest);
+	
+	public List<Note> recupererListeNotesParTest(int idTest);
 
 }

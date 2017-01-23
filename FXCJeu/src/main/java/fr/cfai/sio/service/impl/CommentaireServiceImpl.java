@@ -8,27 +8,32 @@ import fr.cfai.sio.dao.CommentaireDao;
 import fr.cfai.sio.dao.impl.CommentaireNewDaoImpl;
 import fr.cfai.sio.service.CommentaireService;
 
-public class CommentaireServiceImpl implements CommentaireService {
+public class CommentaireServiceImpl implements CommentaireService
+{
 
 	private CommentaireDao commentaireDaoImpl;
 	private List<Commentaire> listeCommentaire;
 
-	public CommentaireServiceImpl() throws Exception {
+	public CommentaireServiceImpl() throws Exception
+	{
 		super();
 		// TODO Auto-generated constructor stub
 		this.commentaireDaoImpl = new CommentaireNewDaoImpl();
 	}
 
 	@Override
-	public List<Commentaire> recupererListeCommentaire() {
+	public List<Commentaire> recupererListeCommentaire()
+	{
 		// TODO Auto-generated method stub
-		if (listeCommentaire == null) {
+		if (listeCommentaire == null)
+		{
 			// System.out.println("ServiceJEU : Passe par le if, liste null");
 			listeCommentaire = commentaireDaoImpl.findAllCommentaire();
 			return listeCommentaire;
 		}
 
-		else {
+		else
+		{
 			// System.out.println("ServiceJEU : Passe par le else, liste not
 			// null");
 			return listeCommentaire;
@@ -37,7 +42,8 @@ public class CommentaireServiceImpl implements CommentaireService {
 	}
 
 	@Override
-	public Commentaire recupererCommentaireParId(int idcommentaire) {
+	public Commentaire recupererCommentaireParId(int idcommentaire)
+	{
 		// TODO Auto-generated method stub
 		Commentaire commentaire = null;
 
@@ -49,14 +55,15 @@ public class CommentaireServiceImpl implements CommentaireService {
 	public int recupererIDMaxCommentaire()
 	{
 		int idMax = 0;
-		
+
 		idMax = commentaireDaoImpl.getIDMaxCommentaire();
-		
+
 		return idMax;
 	}
 
 	@Override
-	public List<Commentaire> recupererCommentaireParTest(int idTest) {
+	public List<Commentaire> recupererCommentaireParTest(int idTest)
+	{
 		// TODO Auto-generated method stub
 		List<Commentaire> listeCommentaire = new ArrayList<>();
 
@@ -66,26 +73,30 @@ public class CommentaireServiceImpl implements CommentaireService {
 	}
 
 	@Override
-	public int ajouterCommentaire(int idCom, String contenuCom, Date dateCom, int idTest,
-			int idUtilisateur) {
+	public int ajouterCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur, int valueNote)
+	{
 		int statut = 0;
-		if (commentaireDaoImpl.addCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur) != 0) {
+		if (commentaireDaoImpl.addCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur, valueNote) != 0)
+		{
 			System.out.println("GG");
-			statut=1;
-			//commentaire = new Commentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur);
+			statut = 1;
+			// commentaire = new Commentaire(idCom, contenuCom, dateCom, idTest,
+			// idUtilisateur);
 		}
 
 		return statut;
 	}
 
 	@Override
-	public Commentaire ajouterReponseCommentaire(int idCom, String contenuCom, Date dateCom, int idTest,
-			int idUtilisateur, int idCommentaire) {
+	public Commentaire ajouterReponseCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur, int idCommentaire)
+	{
 		Commentaire commentaire = null;
 
-		if (commentaireDaoImpl.addReponseCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur, idCommentaire) != 0) {
+		if (commentaireDaoImpl.addReponseCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur, idCommentaire) != 0)
+		{
 			System.out.println("GG");
-			//commentaire = new Commentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur, commentaire);
+			// commentaire = new Commentaire(idCom, contenuCom, dateCom, idTest,
+			// idUtilisateur, commentaire);
 		}
 
 		return commentaire;

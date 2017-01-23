@@ -33,16 +33,24 @@ public class NoteServiceImpl implements NoteService
 	}
 
 	@Override
-	public int ajouterNotePourTest(int note, int idTest)
+	public Note ajouterNotePourTest(int valueNote, int idTest)
 	{
-		int statut = 0;
+		Note note = null;
 		
-		if (noteDaoImpl.addNoteForTest(note, idTest) != 0)
-		{
-			statut = 1;
-		}
+		note=noteDaoImpl.addNoteForTest(valueNote, idTest);
 		
-		return statut;
+		return note;
+	}
+
+	@Override
+	public List<Note> recupererListeNotesParTest(int idTest)
+	{
+		List<Note> listeNotesParTest;
+		
+		listeNotesParTest = noteDaoImpl.findAllNotesByTest(idTest);
+		
+		return listeNotesParTest;
+		
 	}
 
 }

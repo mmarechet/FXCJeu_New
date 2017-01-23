@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import fr.cfai.sio.business.Commentaire;
+import fr.cfai.sio.business.Note;
 import fr.cfai.sio.business.Test;
 import fr.cfai.sio.business.Utilisateur;
 import fr.cfai.sio.dao.CommentaireDao;
 import fr.cfai.sio.dao.ConnexionBDD;
+import fr.cfai.sio.dao.NoteDao;
 import fr.cfai.sio.dao.TestDao;
 import fr.cfai.sio.dao.UtilisateurDao;
 import fr.cfai.sio.dao.requete.CommentaireRequete;
@@ -234,11 +236,12 @@ public class CommentaireNewDaoImpl implements CommentaireDao
 	}
 
 	@Override
-	public int addCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur)
+	public int addCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur, int valueNote)
 	{
 		Statement statement = null;
 		ResultSet resultat = null;
 		PreparedStatement preparedStatement = null;
+		
 		int idMax = 0;
 
 		try
@@ -265,6 +268,24 @@ public class CommentaireNewDaoImpl implements CommentaireDao
 			preparedStatement.setInt(3, idUtilisateur);
 			preparedStatement.setInt(4, idTest);
 			statut = preparedStatement.executeUpdate();
+			
+			try
+			{
+				//Test test=null;
+				//test=getTestByID(idTest);
+				
+				Note note=null;
+				NoteDao noteDaoImpl = new NoteDaoImpl();
+
+				note=noteDaoImpl.addNoteForTest(valueNote, idTest);
+				
+				//test.addNote(note);
+			}
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 		catch (SQLException e)
@@ -277,7 +298,7 @@ public class CommentaireNewDaoImpl implements CommentaireDao
 		}
 		return statut;
 	}
-
+	
 	@Override
 	public int addReponseCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur, int idCommentaire)
 	{

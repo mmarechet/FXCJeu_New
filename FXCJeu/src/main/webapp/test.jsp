@@ -148,7 +148,7 @@
 							<textarea name="ContenuCom">Saisissez ici votre commentaire.</textarea>
 							<br> <label>Selectionner la note du test</label> <select
 								name="notes">
-								<c:forEach begin="0" end="5" var="i">
+								<c:forEach begin="1" end="5" var="i">
 									<option value="${i}">${i}</option>
 								</c:forEach>
 							</select> <input type="submit" value="Envoyer">

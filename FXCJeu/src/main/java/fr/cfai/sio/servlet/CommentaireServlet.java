@@ -49,6 +49,7 @@ public class CommentaireServlet extends HttpServlet
 
 		int idUtilisateur = Integer.parseInt(request.getParameter("Utilisateur"));
 		int idTest = Integer.parseInt(request.getParameter("Test"));
+		
 		Date dateCom = new Date();
 		String contenuCom = request.getParameter("ContenuCom");
 		String contenuReponse = request.getParameter("ContenuReponse");
@@ -70,8 +71,8 @@ public class CommentaireServlet extends HttpServlet
 
 		else
 		{
-
-			if (commentaireServiceImpl.ajouterCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur) == 0)
+			int valueNote = Integer.parseInt(request.getParameter("notes"));
+			if (commentaireServiceImpl.ajouterCommentaire(idCom, contenuCom, dateCom, idTest, idUtilisateur,valueNote) == 0)
 			{
 
 				request.getRequestDispatcher("pageErreur.jsp").forward(request, response);

@@ -37,7 +37,7 @@ public interface CommentaireDao {
 			int idCommentaire);
 
 
-	public int addCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur);
+	public int addCommentaire(int idCom, String contenuCom, Date dateCom, int idTest, int idUtilisateur, int valueNote);
 	
 
 }

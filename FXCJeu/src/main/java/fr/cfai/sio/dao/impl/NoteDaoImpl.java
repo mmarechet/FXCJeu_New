@@ -11,7 +11,6 @@ import fr.cfai.sio.business.Note;
 import fr.cfai.sio.dao.ConnexionBDD;
 import fr.cfai.sio.dao.NoteDao;
 import fr.cfai.sio.dao.requete.NoteRequete;
-import fr.cfai.sio.dao.requete.UtilisateurRequete;
 
 public class NoteDaoImpl implements NoteDao
 {
@@ -111,10 +110,11 @@ public class NoteDaoImpl implements NoteDao
 	}
 
 	@Override
-	public int addNoteForTest(int note, int idTest)
+	public Note addNoteForTest(int valueNote, int idTest)
 	{
 		int statut = 0;
 		int idMax = 0;
+		Note note=null;
 		Statement statement = null;
 		ResultSet resultat = null;
 		PreparedStatement preparedStatement = null;
@@ -137,23 +137,24 @@ public class NoteDaoImpl implements NoteDao
 			}
 
 			preparedStatement = connexion.prepareStatement(NoteRequete.AJOUT_NOTE);
-			preparedStatement.setInt(1, note);
+			preparedStatement.setInt(1, valueNote);
 			preparedStatement.setInt(2, idTest);
 			preparedStatement.setInt(3, idMax);
 			statut = preparedStatement.executeUpdate();
+			
+			note=new Note(idMax,(short)valueNote);
 
 		}
 		catch (SQLException e)
 		{
 			System.out.println("UtilisateurDaoImpl/addUtilisateur - Erreur SQL : " + e.getMessage());
-			return statut;
 		}
 		finally
 		{
 			ConnexionBDD.close(statement, preparedStatement, resultat);
 		}
 
-		return statut;
+		return note;
 	}
 
 }

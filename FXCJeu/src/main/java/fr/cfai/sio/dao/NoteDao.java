@@ -9,5 +9,5 @@ public interface NoteDao
 	
 	public List<Note> findAllNotesByTest(int idTest);
 	
-	public int addNoteForTest(int note, int idTest);
+	public Note addNoteForTest(int note, int idTest);
 }
