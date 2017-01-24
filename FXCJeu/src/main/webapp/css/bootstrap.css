@@ -5201,6 +5201,8 @@ a.label:hover, a.label:focus {
 
 .label-new {
 	background-color: #8080ff;
+	margin-right: 5px;
+	
 }
 
 .label-new[href]:hover, .label-new[href]:focus {
@@ -5217,6 +5219,7 @@ a.label:hover, a.label:focus {
 
 .label-warning {
 	background-color: #f0ad4e;
+	margin-right: 5px;
 }
 
 .label-warning[href]:hover, .label-warning[href]:focus {

@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TestiJeux - Déconnexion</title>
-	<link rel="stylesheet" href="css/swipebox.css" type="text/css"
+<title>TestiJeux - Déconnexion</title>
+<link rel="stylesheet" href="css/swipebox.css" type="text/css"
 	media="all" />
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<meta http-equiv="refresh" content="3; URL=accueil.jsp">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta http-equiv="refresh" content="3; URL=accueil.jsp">
 </head>
 
 
@@ -21,8 +21,9 @@
 				<div class="alert alert-info " role="alert">
 					<strong>Bienvenue sur TestiJeux !</strong> <br> Redirection
 					vers la page d'accueil dans quelques secondes. Veuillez patienter.
-
 				</div>
+				<img class="img-responsiveTest center-block"
+					src="images/testijeux.png" alt=" " />
 			</div>
 		</div>
 	</div>
