@@ -3,6 +3,10 @@
 	<div class="container">
 		<!-- header -->
 		<%@ include file="entete.jsp"%>
+		
+		
+		
+		
 		<div class="header-bottom">
 			<div class="header-bottom-top">
 				<br>

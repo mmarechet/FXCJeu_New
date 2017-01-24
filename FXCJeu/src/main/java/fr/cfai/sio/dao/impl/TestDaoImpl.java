@@ -172,6 +172,11 @@ public class TestDaoImpl implements TestDao
 						List<Note> listeNotes = new ArrayList<>();
 						listeNotes = noteDaoImpl.findAllNotesByTest(id_Test);
 						test.setListeNotes(listeNotes);
+						
+						for(Note note:listeNotes)
+						{
+							System.out.println("TestDaoImpl - valueNote = : " + note.getNote());
+						}
 					}
 					catch (Exception e)
 					{
