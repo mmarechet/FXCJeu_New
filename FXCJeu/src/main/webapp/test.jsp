@@ -32,16 +32,23 @@
 				<br>
 				<h3 class="ghj">Caractéristiques du jeu</h3>
 				<h3>
-					<span class="label label-default">${TEST.jeu.editeur.getRaisonSociale()}</span>
-					<span class="label label-primary">${TEST.jeu.developpeur.getRaisonSociale()}</span>
-					<span class="label label-success">${TEST.jeu.genre.getLibelleGenre()}</span>
-					<span class="label label-info">${TEST.jeu.classification.getLibelleClassification()}</span>
+					<span class="label label-default">Editeur :
+						${TEST.jeu.editeur.getRaisonSociale()}</span> <span
+						class="label label-primary">Développeur :
+						${TEST.jeu.developpeur.getRaisonSociale()}</span> <span
+						class="label label-success">Genre :
+						${TEST.jeu.genre.getLibelleGenre()}</span> <span class="label label-info">Classification
+						: ${TEST.jeu.classification.getLibelleClassification()}</span>
 				</h3>
 
 				<h3>
+					<span class="label label-warning">Support : </span>
 					<c:forEach items="${TEST.jeu.listeSupports}" var="support">
 						<span class="label label-warning">${support.getLibelleSupport()}</span>
 					</c:forEach>
+				</h3>
+				<h3>
+					<span class="label label-new">Modèle économique :</span>
 					<c:forEach items="${TEST.jeu.listeModeleEconomiques}"
 						var="modeleEco">
 						<span class="label label-new">${modeleEco.getLibelleModeleEco()}</span>
@@ -73,36 +80,32 @@
 			<div class="alert alert-danger" role="alert">
 				<strong>Inconvénients</strong> ${TEST.inconvenientJeu}
 			</div>
-<c:if test="${auteur == auteur1}">
-			<!-- Permet d'ajouter des images seulement si on est l'auteur du test -->
-			<span>Ajouter une image : </span>
+			<c:if test="${auteur == auteur1}">
+				<!-- Permet d'ajouter des images seulement si on est l'auteur du test -->
+				<span>Ajouter une image : </span>
 
 
-			<form action="TeleversementServlet" enctype="multipart/form-data"
-				method="POST" name="formulaireTeleversement">
-				<input type="hidden" name="ID_TEST" value="${TEST.idTest}">
-				<input type="file" name="NOM_IMAGE" multiple> <br> <input
-					type="submit" name="submit" id="sumbit" value="Envoyer">
-			</form>
-</c:if>
+				<form action="TeleversementServlet" enctype="multipart/form-data"
+					method="POST" name="formulaireTeleversement">
+					<input type="hidden" name="ID_TEST" value="${TEST.idTest}">
+					<input type="file" name="NOM_IMAGE" multiple> <br> <input
+						type="submit" name="submit" id="sumbit" value="Envoyer">
+				</form>
+			</c:if>
 
-			<!-- Commentaires -->
 			<div class="comment-grid-top">
-				<h3>Responses</h3>
-				<div class="comments-top-top">
-					<div class="top-comment-left"></div>
-					
-					<c:forEach items="${TEST.getListeCommentaires()}" var="commentaire">
+				<h3>Commentaires</h3>
 
-						
-					
+				<c:forEach items="${TEST.getListeCommentaires()}" var="commentaire">
+					<div class="comments-top-top top-grid-comment">
 						<div class="top-comment-right">
 							<ul>
 								<li><span class="left-at">${commentaire.utilisateur.login}</span></li>
 								<li><span class="right-at">${commentaire.dateCom}</span></li>
 								<li><button class="reply" type="button"
 										onclick="toggle_div(this,'commentaire-${commentaire.idCom}');">Répondre</button></li>
-								<div id="commentaire-${commentaire.idCom }" +  style="display: none;">
+								<div id="commentaire-${commentaire.idCom }"
+									+  style="display: none;">
 									<form name="ReponseCommentaireServlet"
 										action="CommentaireServlet" method="POST">
 										<input type="hidden" name="Utilisateur"
@@ -117,24 +120,28 @@
 							</ul>
 							<p>${commentaire.contenuCom}</p>
 						</div>
-						<c:forEach items="${commentaire.getListeCommentairesReponses()}"
-							var="commentaireReponse">
+							<div class="clearfix"></div>
+
+					<c:forEach items="${commentaire.getListeCommentairesReponses()}"
+						var="commentaireReponse">
+						<div class="comments-top-top top-grid-comment">
 							<div class="top-comment-right">
 								<ul>
 									<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
 									<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
 								</ul>
 								<p>${commentaireReponse.contenuCom}</p>
+								<div class="clearfix"></div>
 							</div>
-						</c:forEach>
+						</div>
 					</c:forEach>
-
-
-					<div class="clearfix"></div>
-				</div>
+					</div>
+				</c:forEach>
 			</div>
-			<div class="artical-commentbox">
 
+
+
+			<div class="artical-commentbox">
 				<c:if test="${auteur != auteur1}">
 
 					<h3>Laisser un commentaire</h3>
@@ -145,7 +152,8 @@
 								value="${loginUtilisateur}" readOnly="readOnly"> <input
 								type="hidden" name="Utilisateur" value="${idUtilisateur}">
 							<input type='hidden' name="Test" value="${TEST.idTest}">
-							<textarea name="ContenuCom">Saisissez ici votre commentaire.</textarea>
+							<textarea name="ContenuCom"
+								placeholder="Saisissez ici votre commentaire."></textarea>
 							<br> <label>Selectionner la note du test</label> <select
 								name="notes">
 								<c:forEach begin="1" end="5" var="i">

@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TestiJeux - Déconnexion</title>
-	<link rel="stylesheet" href="css/swipebox.css" type="text/css"
+<title>TestiJeux - Déconnexion</title>
+<link rel="stylesheet" href="css/swipebox.css" type="text/css"
 	media="all" />
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	
-	<meta http-equiv="refresh" content="3; URL=ConnexionServlet">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<meta http-equiv="refresh" content="3; URL=ConnexionServlet">
 </head>
 
 
@@ -23,6 +23,8 @@
 				la page d'accueil dans quelques secondes. Veuillez patienter.
 
 			</div>
+			<img class="img-responsiveTest center-block" src="images/testijeux.png"
+				alt=" " />
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>

@@ -8,10 +8,8 @@
 	media="all" />
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<meta http-equiv="refresh" content="1.4; URL=accueil.jsp">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<meta http-equiv="refresh" content="2; URL=accueil.jsp">
+<meta http-equiv="refresh" content="2; URL=index.jsp">
 </head>
 
 
@@ -21,10 +19,11 @@
 		<div class="banner-body logn">
 			<div class="container">
 				<div class="alert alert-info " role="alert">
-					<strong>Bienvenue sur TestiJeux !</strong> <br> Redirection
-					vers la page d'accueil dans quelques secondes. Veuillez patienter.
-
+					<strong>Bienvenue sur TestiJeux !</strong> <br> Votre inscription a bien été prise en compte. Vous allez être redirigé vers
+					la page de connexion.
 				</div>
+				<img class="img-responsiveTest center-block"
+					src="images/testijeux.png" alt=" " />
 			</div>
 		</div>
 	</div>

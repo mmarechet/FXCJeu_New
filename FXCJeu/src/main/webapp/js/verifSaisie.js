@@ -51,6 +51,9 @@ function verif(chars) {
 			valid = regex.test(chars.value.charAt(x));
 		}
 		
+
+		
+		
 		
 		// retourne faux si il trouve un caractère spécial
 		if (valid == false) {

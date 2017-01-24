@@ -27,32 +27,32 @@
 
 							<li>
 								<label>Titre</label> 
-								<input type="text" name="titre" onBlur="verif(this)" onBlur="verifTitre(this)" required />
+								<input type="text" name="titre" onBlur="verif(this)" onBlur="verifTitre(this)" maxlength="30" required />
 								<span>Entrez ici le titre du test.</span>
 							</li>
 							
 							<li>
 								<label>Description</label> 
-								<textarea name="description" rows="8" cols="50" onBlur="verif(this)" onkeyup="adjust_textarea(this)" required></textarea> 
+								<textarea name="description" rows="8" cols="50" onBlur="verif(this)" onkeyup="adjust_textarea(this)" maxlength="100" required></textarea> 
 								<span>Entrez ici la description du test.</span>
 							</li>
 							
 							
 							<li>
 								<label>Contenu</label> 
-								<textarea name="contenu" rows="8" cols="50" onBlur="verif(this)" onkeyup="adjust_textarea(this)" required></textarea> 
+								<textarea name="contenu" rows="8" cols="50" onBlur="verif(this)" onkeyup="adjust_textarea(this)" maxlength="1000" required></textarea> 
 								<span>Entrez ici le contenu du test.</span>
 							</li>
 							
 							<li>
 							<label>Avantage</label> 
-							<input type="text" name="avantage" onBlur="verif(this)" required>
+							<input type="text" name="avantage" onBlur="verif(this)" maxlength="249" required>
 							<span>Entrez ici le principal avantage du jeu.</span>
 							</li>
 							
 							<li>
 								<label>Inconvénient</label> 
-								<input type="text" name="inconvenient" onBlur="verif(this)" required> 
+								<input type="text" name="inconvenient" onBlur="verif(this)" maxlength="249" required> 
 								<span>Entrez ici le principal inconvénient du jeu.</span>
 							</li>
 
