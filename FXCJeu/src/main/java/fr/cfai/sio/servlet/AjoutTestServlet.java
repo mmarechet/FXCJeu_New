@@ -2,10 +2,14 @@ package fr.cfai.sio.servlet;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import fr.cfai.sio.service.TestService;
 import fr.cfai.sio.service.impl.TestServiceImpl;
 
@@ -43,6 +47,8 @@ public class AjoutTestServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		Pattern p = Pattern.compile("[a-zA-Z_0-9]+");
+		
 
 		String titre = request.getParameter("titre");
 		Date date = new Date();
@@ -52,8 +58,7 @@ public class AjoutTestServlet extends HttpServlet
 		short note = Short.parseShort(request.getParameter("notes"));
 		int id_Jeu = Integer.parseInt(request.getParameter("jeux"));
 		int id_Utilisateur = Integer.parseInt(request.getParameter("auteur"));
-		String contenu = request.getParameter("contenu");
-		
+		String contenu = request.getParameter("contenu");			
 		
 
 		if (testServiceImpl.ajouterTest(titre, date, avantage, inconvenient, description, note, id_Jeu, id_Utilisateur, contenu) == 0)

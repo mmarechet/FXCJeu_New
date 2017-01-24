@@ -6,14 +6,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import fr.cfai.sio.business.Image;
 import fr.cfai.sio.service.ImageService;
 import fr.cfai.sio.service.TestService;
@@ -73,6 +78,11 @@ public class TeleversementServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+	
+			
+		
+		
+		
 		String titre = null;
 		Date date = new Date();
 		String avantage = null;
@@ -172,7 +182,10 @@ public class TeleversementServlet extends HttpServlet
 						break;
 					default:
 						break;
+
 					}
+
+					
 				}
 				else
 				{
@@ -198,6 +211,10 @@ public class TeleversementServlet extends HttpServlet
 							System.out.println("TeleversementServlet - id_Jeu ="+id_Jeu);
 							System.out.println("TeleversementServlet - id_Utilisateur ="+id_Utilisateur);
 							System.out.println("TeleversementServlet - contenu ="+contenu);
+							
+							
+							
+							
 							idTest=testServiceImpl.ajouterTest(titre, date, avantage, inconvenient, description, note, id_Jeu, id_Utilisateur, contenu);
 						}
 						
@@ -219,6 +236,29 @@ public class TeleversementServlet extends HttpServlet
 		}
 		request.setAttribute("idTest", idTest);
 		request.getRequestDispatcher("/ajoutTestValidation.jsp").forward(request, response);
+	}
+	
+	// test des entrées
+	
+	private static boolean verificationSaisie(String chaine){
+		
+		Pattern p = Pattern.compile("[a-zA-Z_0-9]+");	
+		Matcher m = p.matcher(chaine);
+		boolean chaineOk = m.matches();
+		
+		
+		for(int x=0; x<chaine.length();x++){
+			String variable = Character.toString(chaine.charAt(x));
+			if(variable.equalsIgnoreCase("'") || variable.equalsIgnoreCase(" ")){
+				chaineOk = true;
+			}
+		}
+		return chaineOk;
+		
+		/*if (!pseudoOk) {
+			System.out.println("passe ici");
+			response.sendRedirect("/pageErreur.jsp");
+		}*/
 	}
 
 }

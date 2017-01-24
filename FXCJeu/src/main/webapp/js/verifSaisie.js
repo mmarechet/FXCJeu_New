@@ -30,7 +30,7 @@ function verifForm(f) {
 	}
 }
 
-function verif(chars) {
+/*function verif(chars) {
 	// Caractères autorisés
 	var regex = new RegExp("[a-z0-9]", "i");
 	var regex2 = /'/;
@@ -62,7 +62,7 @@ function verif(chars) {
 			x--;
 		}
 
-	}
+	}*/
 	
 	
 }

@@ -22,14 +22,14 @@
 							<h4 class="a">Pseudo* :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" placeholder=" " required name="LOGIN"
+							<input type="text" placeholder=" " required name="LOGIN" maxlength="30"
 								value="${LOGIN}" />
 						</div>
 						<div class="sign-up1">
 							<h4 class="d">Password* :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="password" placeholder=" " required name="PASSWORD" />
+							<input type="password" placeholder=" " required maxlength="30" name="PASSWORD" />
 						</div>
 						<div class="clearfix"></div>
 					</div>
