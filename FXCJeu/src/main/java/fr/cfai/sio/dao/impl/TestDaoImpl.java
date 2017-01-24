@@ -25,13 +25,11 @@ public class TestDaoImpl implements TestDao
 {
 
 	private Connection connexion = ConnexionBDD.getConnection();
-	private List<Test> listeTests;
 	private int statut =0;
 
 	public TestDaoImpl() throws Exception
 	{
 		super();
-		this.listeTests = new ArrayList<>();
 		System.out.println("Constructeur TestDaoImpl");
 	}
 
@@ -128,6 +126,7 @@ public class TestDaoImpl implements TestDao
 	{
 		Statement statement = null;
 		ResultSet resultat = null;
+		List<Test> listeTests=new ArrayList<>();
 		int id_Test;
 		String titreTest;
 		Date dateTest;
