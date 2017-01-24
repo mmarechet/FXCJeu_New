@@ -3,14 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TestiJeux - Validation de l'ajout du test</title>
-	<link rel="stylesheet" href="css/swipebox.css" type="text/css"
+<title>TestiJeux - Validation de l'ajout du test</title>
+<link rel="stylesheet" href="css/swipebox.css" type="text/css"
 	media="all" />
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	
-	<meta http-equiv="refresh" content="2; URL=TestNewServlet?idTest=${idTest}">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<meta http-equiv="refresh"
+	content="2; URL=TestNewServlet?idTest=${idTest}">
 </head>
 
 
@@ -19,10 +20,12 @@
 	<div class="banner-body logn">
 		<div class="container">
 			<div class="alert alert-info " role="alert">
-				<strong>Votre test a bien été ajouté !</strong> <br> Redirection vers
-				la liste des tests dans quelques secondes. Veuillez patienter.
-
+				<strong>Votre test a bien été ajouté !</strong> <br>
+				Redirection vers la liste des tests dans quelques secondes. Veuillez
+				patienter.
 			</div>
+			<img class="img-responsiveTest center-block" src="images/accueil.jpg"
+				alt=" " />
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>
