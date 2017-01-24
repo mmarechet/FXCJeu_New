@@ -119,21 +119,22 @@
 								</div>
 							</ul>
 							<p>${commentaire.contenuCom}</p>
-							<div class="clearfix"></div>
 						</div>
-						<c:forEach items="${commentaire.getListeCommentairesReponses()}"
-							var="commentaireReponse">
-							<div class="comments-top-top top-grid-comment">
-								<div class="top-comment-right">
-									<ul>
-										<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
-										<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
-									</ul>
-									<p>${commentaireReponse.contenuCom}</p>
-									<div class="clearfix"></div>
-								</div>
+							<div class="clearfix"></div>
+
+					<c:forEach items="${commentaire.getListeCommentairesReponses()}"
+						var="commentaireReponse">
+						<div class="comments-top-top top-grid-comment">
+							<div class="top-comment-right">
+								<ul>
+									<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
+									<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
+								</ul>
+								<p>${commentaireReponse.contenuCom}</p>
+								<div class="clearfix"></div>
 							</div>
-						</c:forEach>
+						</div>
+					</c:forEach>
 					</div>
 				</c:forEach>
 			</div>
