@@ -70,7 +70,7 @@ public class InscriptionServlet extends HttpServlet
 
 			if (utilisateurService.ajouteUtilisateur(login, mdp) != null)
 			{
-				request.getRequestDispatcher("/validationInscription.jsp").forward(request, response);
+				request.getRequestDispatcher("/timerInscription.jsp").forward(request, response);
 			}
 			else
 			{
