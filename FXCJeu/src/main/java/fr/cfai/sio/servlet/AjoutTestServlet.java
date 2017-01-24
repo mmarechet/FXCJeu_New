@@ -53,6 +53,8 @@ public class AjoutTestServlet extends HttpServlet
 		int id_Jeu = Integer.parseInt(request.getParameter("jeux"));
 		int id_Utilisateur = Integer.parseInt(request.getParameter("auteur"));
 		String contenu = request.getParameter("contenu");
+		
+		
 
 		if (testServiceImpl.ajouterTest(titre, date, avantage, inconvenient, description, note, id_Jeu, id_Utilisateur, contenu) == 0)
 		{

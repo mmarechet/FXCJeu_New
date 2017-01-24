@@ -13,6 +13,8 @@ function verifTitre(champ) {
 		surligne(champ, false);
 		return true;
 	}
+	
+
 }
 
 function verifForm(f) {
@@ -39,7 +41,9 @@ function verif(chars) {
 
 	for (x = 0; x < chars.value.length; x++) {
 		
-		if (chars.value.charAt(x) == "'" && (x > 0  ) {
+		var longueur = chars.value.length;
+		
+		if (chars.value.charAt(x) == "'" && (x > 0 && x < (longueur - 1))) {
 
 			valid = true;
 		}
