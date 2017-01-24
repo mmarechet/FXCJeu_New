@@ -12,9 +12,6 @@
 			<script>
 				new UISearch(document.getElementById('sb-search'));
 			</script>
-			<!-- //search-scripts -->
-			<!-- //header -->
-			<!-- login-page -->
 
 			<div class="login">
 				<div class="login-grids">
@@ -54,13 +51,8 @@
 			</div>
 		</div>
 	</div>
-	<!--  footer -->
 	<%@ include file="footer.jsp"%>
-	<!-- footer -->
-	<!-- for bootstrap working -->
-	<script src="js/bootstrap.js">
-		
+	<script src="js/bootstrap.js">	
 	</script>
-	<!-- //for bootstrap working -->
 </body>
 </html>

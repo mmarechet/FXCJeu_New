@@ -80,18 +80,24 @@
 			<div class="alert alert-danger" role="alert">
 				<strong>Inconvénients</strong> ${TEST.inconvenientJeu}
 			</div>
-			<c:if test="${auteur == auteur1}">
-				<!-- Permet d'ajouter des images seulement si on est l'auteur du test -->
-				<span>Ajouter une image : </span>
 
+			<div class="artical-commentbox">
 
-				<form action="TeleversementServlet" enctype="multipart/form-data"
-					method="POST" name="formulaireTeleversement">
-					<input type="hidden" name="ID_TEST" value="${TEST.idTest}">
-					<input type="file" name="NOM_IMAGE" multiple> <br> <input
-						type="submit" name="submit" id="sumbit" value="Envoyer">
-				</form>
-			</c:if>
+				<c:if test="${auteur == auteur1}">
+					<!-- Permet d'ajouter des images seulement si on est l'auteur du test -->
+					<h3>Ajouter des images aux test.</h3>
+
+					<div class="table-form">
+						<form action="TeleversementServlet" enctype="multipart/form-data"
+							method="POST" name="formulaireTeleversement">
+							<input type="hidden" name="ID_TEST" value="${TEST.idTest}">
+							<input type="file" name="NOM_IMAGE" multiple> <br> <input
+								type="submit" name="submit" id="sumbit" value="Envoyer">
+						</form>
+					</div>
+				</c:if>
+				<br>
+			</div>
 
 			<div class="comment-grid-top">
 				<h3>Commentaires</h3>
@@ -120,21 +126,21 @@
 							</ul>
 							<p>${commentaire.contenuCom}</p>
 						</div>
-							<div class="clearfix"></div>
+						<div class="clearfix"></div>
 
-					<c:forEach items="${commentaire.getListeCommentairesReponses()}"
-						var="commentaireReponse">
-						<div class="comments-top-top top-grid-comment">
-							<div class="top-comment-right">
-								<ul>
-									<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
-									<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
-								</ul>
-								<p>${commentaireReponse.contenuCom}</p>
-								<div class="clearfix"></div>
+						<c:forEach items="${commentaire.getListeCommentairesReponses()}"
+							var="commentaireReponse">
+							<div class="comments-top-top top-grid-comment">
+								<div class="top-comment-right">
+									<ul>
+										<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
+										<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
+									</ul>
+									<p>${commentaireReponse.contenuCom}</p>
+									<div class="clearfix"></div>
+								</div>
 							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
 					</div>
 				</c:forEach>
 			</div>
@@ -154,8 +160,7 @@
 							<input type='hidden' name="Test" value="${TEST.idTest}">
 							<textarea name="ContenuCom"
 								placeholder="Saisissez ici votre commentaire."></textarea>
-							<br> <label>Selectionner la note du test</label> <select
-								name="notes">
+							<br> <label>Noter le test</label> <select name="notes">
 								<c:forEach begin="1" end="5" var="i">
 									<option value="${i}">${i}</option>
 								</c:forEach>

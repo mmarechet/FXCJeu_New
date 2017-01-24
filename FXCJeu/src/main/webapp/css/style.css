@@ -440,7 +440,13 @@ a.navbar-brand:hover {
 #slider3-pager
 
 
+
+
+
  
+
+
+
 
 
 li
@@ -448,7 +454,13 @@ li
 #slider4-pager
 
 
+
+
+
  
+
+
+
 
 
 li
@@ -456,7 +468,13 @@ li
 #slider2-pager
 
 
+
+
+
  
+
+
+
 
 
 li
@@ -467,7 +485,19 @@ display
 
 
 
+
+
+
+
+
+
 :inline-block
+
+
+
+
+
+
 
 
 
@@ -1899,6 +1929,19 @@ p.lom {
 	background-color: #f4f4f4;
 }
 
+.table-form form input[type="file"] {
+	border: none;
+	outline: none;
+	padding: 1em;
+	margin-top: 23px;
+	color: #666;
+	overflow: hidden;
+	width: 40%;
+	display: block;
+	font-size: 1em;
+	background-color: #f4f4f4;
+}
+
 .table-form textarea {
 	padding: 1em;
 	margin-top: 25px;
@@ -2109,6 +2152,9 @@ p.lom {
 	.table-form form input[type="text"] {
 		width: 50%;
 	}
+	.table-form form input[type="file"] {
+		width: 50%;
+	}
 	.single-page-artical {
 		min-height: 2210px;
 	}
@@ -2273,6 +2319,9 @@ p.lom {
 		width: 86%;
 	}
 	.table-form form input[type="text"] {
+		width: 70%;
+	}
+	.table-form form input[type="file"] {
 		width: 70%;
 	}
 	.single-page-artical {
@@ -2452,7 +2501,8 @@ p.lom {
 	.single-page-artical {
 		min-height: 2100px;
 	}
-	.table-form textarea, .table-form form input[type="text"] {
+	.table-form textarea, .table-form form input[type="text"], .table-form form input[type="file"]
+		{
 		font-size: 14px;
 	}
 	.row {
@@ -2600,7 +2650,11 @@ p.lom {
 	.table-form form input[type="text"] {
 		width: 90%;
 	}
-	.table-form form input[type="text"], .table-form textarea {
+	.table-form form input[type="file"] {
+		width: 90%;
+	}
+	.table-form form input[type="text"], .table-form textarea, .table-form form input[type="file"]
+		{
 		margin-top: 15px;
 	}
 	.top-comment-right ul li span.right-at {
@@ -2856,7 +2910,8 @@ p.lom {
 	.top-comment-right ul li {
 		padding: 0 0.3em;
 	}
-	.table-form form input[type="text"], .table-form textarea {
+	.table-form form input[type="text"], .table-form form input[type="file"],
+		.table-form textarea {
 		padding: 10px 10px;
 		width: 100%;
 		font-size: 13px;
