@@ -27,7 +27,7 @@
 
 							<li>
 								<label>Titre</label> 
-								<input type="text" name="titre" required>
+								<input type="text" name="titre" onkeyup="verif(this)" onBlur="verifTitre(this)" required />
 								<span>Entrez ici le titre du test.</span>
 							</li>
 							
