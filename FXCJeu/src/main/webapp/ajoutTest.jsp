@@ -14,6 +14,15 @@
 					<h1> Création d'un test</h1>
 					<form action="TeleversementServlet" enctype="multipart/form-data" method="POST"
 						name="formulaireAjoutTest" class="form-style-7">
+						
+						<c:if test="${ERREURSAISIE eq'erreurTrue'}">
+								<div class="alert alert-danger" role="alert">
+									<strong>Erreur</strong> Les caractères spéciaux sont interdit.
+								</div>
+							</c:if>
+						
+						
+						
 						<ul>
 							<li>
 								<label>Jeu</label> 

@@ -92,6 +92,7 @@ public class TeleversementServlet extends HttpServlet
 		int id_Jeu = 0;
 		int id_Utilisateur = 0;
 		String contenu = null;
+		boolean chaineVerif = true;
 
 		System.out.println("TeleversementServlet - DoPost");
 
@@ -151,30 +152,39 @@ public class TeleversementServlet extends HttpServlet
 					switch (nomChamp)
 					{
 					case "ID_TEST":
+						
 						idTest = Integer.parseInt(valeurChamp);
 						break;
 					case "titre":
+						chaineVerif =  verificationSaisie(valeurChamp);
 						titre = valeurChamp;
 						break;
 					case "avantage":
+						chaineVerif =  verificationSaisie(valeurChamp);
 						avantage = valeurChamp;
 						break;
 					case "inconvenient":
+						chaineVerif =  verificationSaisie(valeurChamp);
 						inconvenient = valeurChamp;
 						break;
 					case "description":
+						chaineVerif =  verificationSaisie(valeurChamp);
 						description = valeurChamp;
 						break;
 					case "notes":
+						
 						note = Short.parseShort(valeurChamp);
 						break;
 					case "jeux":
+						
 						id_Jeu = Integer.parseInt(valeurChamp);
 						break;
 					case "auteur":
+						
 						id_Utilisateur = Integer.parseInt(valeurChamp);
 						break;
 					case "contenu":
+						chaineVerif =  verificationSaisie(valeurChamp);
 						contenu = valeurChamp;
 						break;
 					case "NOM_IMAGE":
@@ -185,8 +195,10 @@ public class TeleversementServlet extends HttpServlet
 
 					}
 
-					
+
 				}
+				
+				
 				else
 				{
 					i++;
@@ -234,8 +246,18 @@ public class TeleversementServlet extends HttpServlet
 			} // End of while
 			System.out.println("TeleversementServlet - Fin du while");
 		}
-		request.setAttribute("idTest", idTest);
-		request.getRequestDispatcher("/ajoutTestValidation.jsp").forward(request, response);
+		
+			
+			request.setAttribute("idTest", idTest);
+			request.getRequestDispatcher("/ajoutTestValidation.jsp").forward(request, response);
+		
+		
+			request.setAttribute("ERREURSAISIE", "erreurTrue");
+			request.getRequestDispatcher("/ajoutTest.jsp").forward(request, response);
+		
+			
+		
+		
 	}
 	
 	// test des entrées
@@ -260,5 +282,6 @@ public class TeleversementServlet extends HttpServlet
 			response.sendRedirect("/pageErreur.jsp");
 		}*/
 	}
+	
 
 }
