@@ -3,19 +3,20 @@
 	<div class="container">
 		<!-- header -->
 		<%@ include file="entete.jsp"%>
-		
-		
-		
-		
+
+
+
+
 		<div class="header-bottom">
 			<div class="header-bottom-top">
 				<br>
 			</div>
 			<div class="clearfix"></div>
-							   <div class="alert alert-info" role="alert">
-					<strong><a href="ListeJeuxServlet?action=ajout">Ajouter un test</a></strong> 
-				   </div>
-				   
+			<div class="alert alert-info" role="alert">
+				<strong><a href="ListeJeuxServlet?action=ajout">Ajouter
+						un test</a></strong>
+			</div>
+
 			<div class="blog">
 				<!-- Gros bloc de tests de jeux -->
 				<div class="blog-left">
@@ -26,10 +27,10 @@
 								<a href="TestNewServlet?idTest=${test.idTest}">${test.titreTest}</a>
 							</h3>
 						</div>
-												<div class="blog-left-grid-right">
+						<div class="blog-left-grid-right">
 							<a href="#" class="hvr-bounce-to-bottom non">${test.getNbCom()}
-								</a>
-						</div> 
+							</a>
+						</div>
 
 						<div class="clearfix"></div>
 

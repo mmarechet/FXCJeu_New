@@ -29,6 +29,11 @@ public interface TestDao
 	 */
 	public List<Test> findAllTest();
 	
+	/**
+	 * Permet de récuperer la liste des tests pour un jeu donné
+	 * @param idJeu
+	 * @return La liste des tests d'un jeu
+	 */
 	public List<Test> findAllTestByJeu(int idJeu);
 
 	/**
