@@ -378,12 +378,9 @@ public class Test
 			for (Note note : listeNotes)
 			{
 				cumul_Note += note.getNote();
-				System.out.println("ID du test = "+idTest+" -- Valeur note = "+note.getNote()+" -- cumul = "+cumul_Note);
 			}
 
 			chaineReturn = format.format(cumul_Note / tailleListe) + " / 5";
-			
-			System.out.println("ID du test = "+idTest+" -- chaine Retournée = "+chaineReturn);
 			
 
 		}

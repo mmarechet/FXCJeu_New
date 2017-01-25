@@ -3,6 +3,7 @@
 	<div class="container">
 		<%@ include file="entete.jsp"%>
 
+		<c:set var="dejaNote" scope="session" value="false" />
 
 		<c:set var="auteur" scope="session" value="${idUtilisateur}" />
 
@@ -103,6 +104,9 @@
 				<h3>Commentaires</h3>
 
 				<c:forEach items="${TEST.getListeCommentaires()}" var="commentaire">
+					<c:if test="${auteur == commentaire.utilisateur.idUtilisateur}">
+						<c:set var="dejaNote" scope="session" value="true" />
+					</c:if>
 					<div class="comments-top-top top-grid-comment">
 						<div class="top-comment-right">
 							<ul>
@@ -111,7 +115,7 @@
 								<li><button class="reply" type="button"
 										onclick="toggle_div(this,'commentaire-${commentaire.idCom}');">Répondre</button></li>
 								<div id="commentaire-${commentaire.idCom }"
-									+  style="display: none;">
+									style="display: none;">
 									<form name="ReponseCommentaireServlet"
 										action="CommentaireServlet" method="POST">
 										<input type="hidden" name="Utilisateur"
@@ -150,6 +154,7 @@
 			<div class="artical-commentbox">
 				<c:if test="${auteur != auteur1}">
 
+
 					<h3>Laisser un commentaire</h3>
 					<div class="table-form">
 						<form name="CommentaireServlet" action="CommentaireServlet"
@@ -160,11 +165,16 @@
 							<input type='hidden' name="Test" value="${TEST.idTest}">
 							<textarea name="ContenuCom"
 								placeholder="Saisissez ici votre commentaire."></textarea>
-							<br> <label>Noter le test</label> <select name="notes">
-								<c:forEach begin="1" end="5" var="i">
-									<option value="${i}">${i}</option>
-								</c:forEach>
-							</select> <input type="submit" value="Envoyer">
+							<c:if test="${dejaNote==false}">
+								<br>
+								<label>Noter le test</label>
+								<select name="notes">
+									<c:forEach begin="1" end="5" var="i">
+										<option value="${i}">${i}</option>
+									</c:forEach>
+								</select>
+							</c:if>
+							<input type="submit" value="Envoyer">
 						</form>
 					</div>
 				</c:if>
