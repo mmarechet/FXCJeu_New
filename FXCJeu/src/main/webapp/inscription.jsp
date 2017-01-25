@@ -14,7 +14,7 @@
 					<h5>Informations de connexion</h5>
 					<c:if test="${CONTROLE_INSCRIPTION eq'NOK'}">
 						<div class="alert alert-danger" role="alert">
-							<strong>Erreur</strong> La combinaison est incorrecte.
+							<strong>Erreur</strong> Le login est déjà utilisé. Veuillez en choisir un autre.
 						</div>
 					</c:if>
 					<div class="sign-u">

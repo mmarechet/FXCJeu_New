@@ -76,6 +76,7 @@ public class TeleversementServlet extends HttpServlet
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("null")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 	
@@ -149,7 +150,9 @@ public class TeleversementServlet extends HttpServlet
 					System.out.println("TeleversementServlet - if item.isFormField");
 					String nomChamp = item.getFieldName();
 					String valeurChamp = item.getString();
-
+					System.out.println("TeleversementServlet - nomChamp = "+nomChamp);
+					
+					System.out.println("TeleversementServlet - valeurChamp = "+valeurChamp);
 					switch (nomChamp)
 					{
 					case "ID_TEST":
@@ -189,6 +192,7 @@ public class TeleversementServlet extends HttpServlet
 						contenu = valeurChamp;
 						break;
 					case "NOM_IMAGE":
+						System.out.println("TeleversementServlet - NOM_IMAGE = "+valeurChamp);
 						nomImage = valeurChamp;
 						break;
 					default:
@@ -206,6 +210,16 @@ public class TeleversementServlet extends HttpServlet
 				
 				else
 				{
+					String valeurChamp = item.getString();
+
+					String valeurName = item.getName();
+					System.out.println("TeleversementServlet - valeurChamp = "+valeurName);
+					
+					Long valeurSize = item.getSize();
+					System.out.println("TeleversementServlet - valeurChamp = "+valeurSize);
+					
+
+					
 					i++;
 					System.out.println("TeleversementServlet - else item.isFormField");
 					String nomCompletImage = cheminImages + separateur + "wtpwebapps" + separateur + nomApp + separateur + "images" + separateur
@@ -213,7 +227,7 @@ public class TeleversementServlet extends HttpServlet
 					System.out.println("TeleversementServlet - nomCompletImage : " + nomCompletImage);
 
 					String nomCompletPourBDD = nomImage + dateImg + i + ".jpg";
-					java.io.File fichierATeleverser = new java.io.File(nomCompletImage);
+				
 
 					try
 					{
@@ -229,16 +243,20 @@ public class TeleversementServlet extends HttpServlet
 							System.out.println("TeleversementServlet - id_Utilisateur ="+id_Utilisateur);
 							System.out.println("TeleversementServlet - contenu ="+contenu);
 							
-							
-							
-							
 							idTest=testServiceImpl.ajouterTest(titre, date, avantage, inconvenient, description, note, id_Jeu, id_Utilisateur, contenu);
 						}
 						
-						item.write(fichierATeleverser);
-						image = imageServiceImpl.ajouterImage(nomCompletPourBDD, idTest);
-						// image =
-						// imageServiceImpl.ajouterImage(nomCompletImage, 1);
+						if(valeurName==null || valeurName.isEmpty() || valeurName.equals(""))
+						{
+							System.out.println("TeleversementServlet - valeurName null");
+							
+						}
+						else
+						{
+							java.io.File fichierATeleverser = new java.io.File(nomCompletImage);
+							item.write(fichierATeleverser);
+							image = imageServiceImpl.ajouterImage(nomCompletPourBDD, idTest);
+						}
 
 					}
 					catch (Exception e)
