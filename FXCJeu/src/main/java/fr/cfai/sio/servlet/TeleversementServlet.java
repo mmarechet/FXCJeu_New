@@ -273,7 +273,8 @@ public class TeleversementServlet extends HttpServlet
 			if(verification.equals("erreurTrue")){
 				
 				request.setAttribute("ERREURSAISIE", verification);
-				request.getRequestDispatcher("/ajoutTest.jsp").forward(request, response);
+				//request.getRequestDispatcher("ListeJeuxServlet").forward(request, response);
+				response.sendRedirect("ListeJeuxServlet?ERREURSAISIE="+ verification);
 				
 			}else{
 				request.setAttribute("idTest", idTest);
@@ -294,17 +295,25 @@ public class TeleversementServlet extends HttpServlet
 	private static boolean verificationSaisie(String chaine){
 		
 		Pattern p = Pattern.compile("[a-zA-Z_0-9]+");	
-		Matcher m = p.matcher(chaine);
-		boolean chaineOk = m.matches();
-		
+		//Matcher m = p.matcher(chaine);
+		//boolean chaineOk = m.matches();
+		boolean chaineOk = true;
+		boolean chaineFin = true;
 		
 		for(int x=0; x<chaine.length();x++){
 			String variable = Character.toString(chaine.charAt(x));
+			Matcher m = p.matcher(variable);
+			chaineOk = m.matches();
+			
 			if(variable.equalsIgnoreCase("'") || variable.equalsIgnoreCase(" ")){
 				chaineOk = true;
 			}
+			
+			if(chaineOk == false){
+				 chaineFin = false;
+			}
 		}
-		return chaineOk;
+		return chaineFin;
 		
 		/*if (!pseudoOk) {
 			System.out.println("passe ici");

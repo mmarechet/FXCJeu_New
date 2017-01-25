@@ -42,8 +42,10 @@ public class ListeJeuxServlet extends HttpServlet
 
 		System.out.println("ListeJeuxServlet - Passe par le doGet");
 
-		if (request.getParameter("action") != null)
+		if (request.getParameter("action") != null || request.getParameter("ERREURSAISIE") != null)
 		{
+			String verification = request.getParameter("ERREURSAISIE");
+			request.setAttribute("ERREURSAISIE", request.getParameter("ERREURSAISIE"));
 			HttpSession session = request.getSession(true);
 			int idUtilisateur = (int) session.getAttribute("ID");
 			request.setAttribute("idUtilisateur", idUtilisateur);
