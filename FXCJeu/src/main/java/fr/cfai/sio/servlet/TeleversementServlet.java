@@ -255,7 +255,8 @@ public class TeleversementServlet extends HttpServlet
 			if(verification.equals("erreurTrue")){
 				
 				request.setAttribute("ERREURSAISIE", verification);
-				request.getRequestDispatcher("/ajoutTest.jsp").forward(request, response);
+				//request.getRequestDispatcher("ListeJeuxServlet").forward(request, response);
+				response.sendRedirect("ListeJeuxServlet?ERREURSAISIE="+ verification);
 				
 			}else{
 				request.setAttribute("idTest", idTest);
