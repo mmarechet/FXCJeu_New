@@ -63,7 +63,7 @@
 				</h3>
 			</div>
 
-			<p>${TEST.descriptionTest}</p>
+			<p>${TEST.contenuTest}</p>
 
 
 			<div class="artical-links">
@@ -164,9 +164,9 @@
 								type="hidden" name="Utilisateur" value="${idUtilisateur}">
 							<input type='hidden' name="Test" value="${TEST.idTest}">
 							<textarea name="ContenuCom"
-								placeholder="Saisissez ici votre commentaire."></textarea>
+								placeholder="Saisir ici votre commentaire."></textarea>
 							<c:if test="${dejaNote==false}">
-								<br>
+							<br>
 								<label>Noter le test</label>
 								<select name="notes">
 									<c:forEach begin="1" end="5" var="i">

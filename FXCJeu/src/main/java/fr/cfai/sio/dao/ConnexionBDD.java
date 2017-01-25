@@ -9,9 +9,6 @@ import java.sql.Statement;
 
 /**
  * Commentaire OK
- * 
- * Renommage des constantes ==> En MAJUSCULE
- * 
  * @author mathieu
  *
  */
@@ -27,6 +24,10 @@ public class ConnexionBDD
 	private static Connection connexion;
 	/*private static Statement statement;*/
 
+	/**
+	 * Accesseur de la connexion
+	 * @return
+	 */
 	public static Connection getConnection()
 	{
 
@@ -61,6 +62,12 @@ public class ConnexionBDD
 
 	}
 
+	/** 
+	 * Close la connexion
+	 * @param statement
+	 * @param preparedStatement
+	 * @param resultat
+	 */
 	public static void close(Statement statement, PreparedStatement preparedStatement, ResultSet resultat)
 	{
 		if (resultat != null)
@@ -101,7 +108,11 @@ public class ConnexionBDD
 	}
 
 
-
+	/**
+	 * Close la co
+	 * @param preparedStatement
+	 * @param resultat
+	 */
 	public static void close(PreparedStatement preparedStatement, ResultSet resultat)
 	{
 		close(null, preparedStatement, resultat);

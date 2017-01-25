@@ -443,7 +443,9 @@ a.navbar-brand:hover {
 
 
 
+
  
+
 
 
 
@@ -457,7 +459,9 @@ li
 
 
 
+
  
+
 
 
 
@@ -471,7 +475,9 @@ li
 
 
 
+
  
+
 
 
 
@@ -491,7 +497,11 @@ display
 
 
 
+
+
 :inline-block
+
+
 
 
 
@@ -1942,6 +1952,18 @@ p.lom {
 	background-color: #f4f4f4;
 }
 
+.table-form form select {
+	border: none;
+	outline: none;
+	padding: 1em;
+	color: #666;
+	overflow: hidden;
+	width: 40%;
+	display: block;
+	font-size: 1em;
+	background-color: #f4f4f4;
+}
+
 .table-form textarea {
 	padding: 1em;
 	margin-top: 25px;
@@ -2041,7 +2063,7 @@ p.lom {
 .comments-top-top {
 	margin: 1.5em 0;
 	background: #eee;
-	padding: 2em;
+	padding: 1.8em;
 	width: 70%;
 }
 
@@ -2153,6 +2175,9 @@ p.lom {
 		width: 50%;
 	}
 	.table-form form input[type="file"] {
+		width: 50%;
+	}
+	.table-form form select {
 		width: 50%;
 	}
 	.single-page-artical {
@@ -2322,6 +2347,9 @@ p.lom {
 		width: 70%;
 	}
 	.table-form form input[type="file"] {
+		width: 70%;
+	}
+	.table-form form select {
 		width: 70%;
 	}
 	.single-page-artical {
@@ -2501,8 +2529,8 @@ p.lom {
 	.single-page-artical {
 		min-height: 2100px;
 	}
-	.table-form textarea, .table-form form input[type="text"], .table-form form input[type="file"]
-		{
+	.table-form textarea, .table-form form input[type="text"], .table-form form input[type="file"],
+		.table-form form select {
 		font-size: 14px;
 	}
 	.row {
@@ -2653,7 +2681,10 @@ p.lom {
 	.table-form form input[type="file"] {
 		width: 90%;
 	}
-	.table-form form input[type="text"], .table-form textarea, .table-form form input[type="file"]
+		.table-form form select {
+		width: 90%;
+	}
+	.table-form form input[type="text"], .table-form textarea, .table-form form input[type="file"], .table-form form select
 		{
 		margin-top: 15px;
 	}
@@ -2911,7 +2942,7 @@ p.lom {
 		padding: 0 0.3em;
 	}
 	.table-form form input[type="text"], .table-form form input[type="file"],
-		.table-form textarea {
+		.table-form textarea, .table-form form select {
 		padding: 10px 10px;
 		width: 100%;
 		font-size: 13px;
