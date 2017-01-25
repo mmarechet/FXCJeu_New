@@ -93,6 +93,7 @@ public class TeleversementServlet extends HttpServlet
 		int id_Utilisateur = 0;
 		String contenu = null;
 		boolean chaineVerif = true;
+		String verification = "Ok" ;
 
 		System.out.println("TeleversementServlet - DoPost");
 
@@ -194,8 +195,12 @@ public class TeleversementServlet extends HttpServlet
 						break;
 
 					}
-
-
+					
+					if(chaineVerif == false){
+						
+						 verification = "erreurTrue";
+					}
+					
 				}
 				
 				
@@ -212,7 +217,7 @@ public class TeleversementServlet extends HttpServlet
 
 					try
 					{
-						if(idTest==0)
+						if(idTest==0 && verification.equals("Ok"))
 						{
 							System.out.println("TeleversementServlet - idTest=0");
 							System.out.println("TeleversementServlet - titre ="+titre);
@@ -247,13 +252,19 @@ public class TeleversementServlet extends HttpServlet
 			System.out.println("TeleversementServlet - Fin du while");
 		}
 		
+			if(verification.equals("erreurTrue")){
+				
+				request.setAttribute("ERREURSAISIE", verification);
+				request.getRequestDispatcher("/ajoutTest.jsp").forward(request, response);
+				
+			}else{
+				request.setAttribute("idTest", idTest);
+				request.getRequestDispatcher("/ajoutTestValidation.jsp").forward(request, response);
+			}
 			
-			request.setAttribute("idTest", idTest);
-			request.getRequestDispatcher("/ajoutTestValidation.jsp").forward(request, response);
 		
 		
-			request.setAttribute("ERREURSAISIE", "erreurTrue");
-			request.getRequestDispatcher("/ajoutTest.jsp").forward(request, response);
+			
 		
 			
 		
