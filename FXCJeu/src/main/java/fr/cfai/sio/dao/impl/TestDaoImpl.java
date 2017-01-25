@@ -25,13 +25,11 @@ public class TestDaoImpl implements TestDao
 {
 
 	private Connection connexion = ConnexionBDD.getConnection();
-	private List<Test> listeTests;
-	private int statut =0;
+	private int statut = 0;
 
 	public TestDaoImpl() throws Exception
 	{
 		super();
-		this.listeTests = new ArrayList<>();
 		System.out.println("Constructeur TestDaoImpl");
 	}
 
@@ -48,7 +46,6 @@ public class TestDaoImpl implements TestDao
 		String inconvenientJeu;
 		String descriptionTest;
 		String contenuTest;
-		String imgTest;
 		Jeu jeu;
 		Utilisateur utilisateur;
 		Test test = null;
@@ -73,9 +70,8 @@ public class TestDaoImpl implements TestDao
 					utilisateur = getUtilisateurByID(resultat.getInt(8));
 					noteJeu = resultat.getShort(9);
 					contenuTest = resultat.getString(10);
-					imgTest = resultat.getString(11);
 
-					test = new Test(id_Test, titreTest, dateTest, noteJeu, avantageJeu, inconvenientJeu, descriptionTest, contenuTest, imgTest, jeu,
+					test = new Test(id_Test, titreTest, dateTest, noteJeu, avantageJeu, inconvenientJeu, descriptionTest, contenuTest, jeu,
 							utilisateur);
 
 					try
@@ -128,6 +124,7 @@ public class TestDaoImpl implements TestDao
 	{
 		Statement statement = null;
 		ResultSet resultat = null;
+		List<Test> listeTests = new ArrayList<>();
 		int id_Test;
 		String titreTest;
 		Date dateTest;
@@ -136,14 +133,13 @@ public class TestDaoImpl implements TestDao
 		String inconvenientJeu;
 		String descriptionTest;
 		String contenuTest;
-		String imgTest;
 		Jeu jeu;
 		Utilisateur utilisateur;
 		Test test = null;
 
 		try
 		{
-			
+
 			statement = connexion.createStatement();
 			resultat = statement.executeQuery(TestRequete.FIND_ALL_TESTS);
 
@@ -161,17 +157,21 @@ public class TestDaoImpl implements TestDao
 					utilisateur = getUtilisateurByID(resultat.getInt(8));
 					noteJeu = resultat.getShort(9);
 					contenuTest = resultat.getString(10);
-					imgTest = resultat.getString(11);
 
-					test = new Test(id_Test, titreTest, dateTest, noteJeu, avantageJeu, inconvenientJeu, descriptionTest, contenuTest, imgTest, jeu,
+					test = new Test(id_Test, titreTest, dateTest, noteJeu, avantageJeu, inconvenientJeu, descriptionTest, contenuTest, jeu,
 							utilisateur);
-					
+
 					try
 					{
 						NoteDao noteDaoImpl = new NoteDaoImpl();
 						List<Note> listeNotes = new ArrayList<>();
 						listeNotes = noteDaoImpl.findAllNotesByTest(id_Test);
 						test.setListeNotes(listeNotes);
+
+						for (Note note : listeNotes)
+						{
+							System.out.println("TestDaoImpl - valueNote = : " + note.getNote());
+						}
 					}
 					catch (Exception e)
 					{
@@ -226,7 +226,6 @@ public class TestDaoImpl implements TestDao
 		String inconvenientJeu;
 		String descriptionTest;
 		String contenuTest;
-		String imgTest;
 		Jeu jeu;
 		Utilisateur utilisateur;
 		Test test = null;
@@ -253,9 +252,8 @@ public class TestDaoImpl implements TestDao
 					utilisateur = getUtilisateurByID(resultat.getInt(8));
 					noteJeu = resultat.getShort(9);
 					contenuTest = resultat.getString(10);
-					imgTest = resultat.getString(11);
 
-					test = new Test(id_Test, titreTest, dateTest, noteJeu, avantageJeu, inconvenientJeu, descriptionTest, contenuTest, imgTest, jeu,
+					test = new Test(id_Test, titreTest, dateTest, noteJeu, avantageJeu, inconvenientJeu, descriptionTest, contenuTest, jeu,
 							utilisateur);
 
 					try
@@ -305,17 +303,14 @@ public class TestDaoImpl implements TestDao
 	}
 
 	@Override
-	public int addTest(String titre, Date date, String avantage, String inconvenient, String description, short note, int id_Jeu,
-			int id_Utilisateur, String contenu)
+	public int addTest(String titre, Date date, String avantage, String inconvenient, String description, short note, int id_Jeu, int id_Utilisateur,
+			String contenu)
 	{
 		Statement statement = null;
 		ResultSet resultat = null;
 		PreparedStatement preparedStatement = null;
 		int idMax = 0;
-		
-	//	java.sql.Date dateSql;
-		//dateSql=(java.sql.Date) dateCom;
-		
+
 		try
 		{
 			statement = connexion.createStatement();
@@ -337,7 +332,6 @@ public class TestDaoImpl implements TestDao
 			preparedStatement = connexion.prepareStatement(TestRequete.ADD_TEST);
 			preparedStatement.setInt(1, idMax);
 			preparedStatement.setString(2, titre);
-			//preparedStatement.setDate(3, (java.sql.Date) date);
 			preparedStatement.setString(3, avantage);
 			preparedStatement.setString(4, inconvenient);
 			preparedStatement.setString(5, description);
@@ -345,9 +339,7 @@ public class TestDaoImpl implements TestDao
 			preparedStatement.setInt(6, id_Jeu);
 			preparedStatement.setInt(7, id_Utilisateur);
 			preparedStatement.setString(9, contenu);
-			
-			
-			
+
 			statut = preparedStatement.executeUpdate();
 
 		}

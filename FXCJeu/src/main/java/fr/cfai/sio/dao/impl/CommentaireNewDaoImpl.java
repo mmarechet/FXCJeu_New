@@ -271,15 +271,15 @@ public class CommentaireNewDaoImpl implements CommentaireDao
 			
 			try
 			{
-				//Test test=null;
-				//test=getTestByID(idTest);
+				Test test=null;
+				test=getTestByID(idTest);
 				
 				Note note=null;
 				NoteDao noteDaoImpl = new NoteDaoImpl();
 
 				note=noteDaoImpl.addNoteForTest(valueNote, idTest);
 				
-				//test.addNote(note);
+				test.addNote(note);
 			}
 			catch (Exception e)
 			{

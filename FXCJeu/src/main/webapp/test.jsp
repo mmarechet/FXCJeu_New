@@ -3,6 +3,7 @@
 	<div class="container">
 		<%@ include file="entete.jsp"%>
 
+		<c:set var="dejaNote" scope="session" value="false" />
 
 		<c:set var="auteur" scope="session" value="${idUtilisateur}" />
 
@@ -42,7 +43,7 @@
 				</h3>
 
 				<h3>
-					<span class="label label-warning">Support : </span>
+					<span class="label label-warning">Support :</span>
 					<c:forEach items="${TEST.jeu.listeSupports}" var="support">
 						<span class="label label-warning">${support.getLibelleSupport()}</span>
 					</c:forEach>
@@ -80,23 +81,32 @@
 			<div class="alert alert-danger" role="alert">
 				<strong>Inconvénients</strong> ${TEST.inconvenientJeu}
 			</div>
-			<c:if test="${auteur == auteur1}">
-				<!-- Permet d'ajouter des images seulement si on est l'auteur du test -->
-				<span>Ajouter une image : </span>
 
+			<div class="artical-commentbox">
 
-				<form action="TeleversementServlet" enctype="multipart/form-data"
-					method="POST" name="formulaireTeleversement">
-					<input type="hidden" name="ID_TEST" value="${TEST.idTest}">
-					<input type="file" name="NOM_IMAGE" multiple> <br> <input
-						type="submit" name="submit" id="sumbit" value="Envoyer">
-				</form>
-			</c:if>
+				<c:if test="${auteur == auteur1}">
+					<!-- Permet d'ajouter des images seulement si on est l'auteur du test -->
+					<h3>Ajouter des images aux test.</h3>
+
+					<div class="table-form">
+						<form action="TeleversementServlet" enctype="multipart/form-data"
+							method="POST" name="formulaireTeleversement">
+							<input type="hidden" name="ID_TEST" value="${TEST.idTest}">
+							<input type="file" name="NOM_IMAGE" multiple> <br> <input
+								type="submit" name="submit" id="sumbit" value="Envoyer">
+						</form>
+					</div>
+				</c:if>
+				<br>
+			</div>
 
 			<div class="comment-grid-top">
 				<h3>Commentaires</h3>
 
 				<c:forEach items="${TEST.getListeCommentaires()}" var="commentaire">
+					<c:if test="${auteur == commentaire.utilisateur.idUtilisateur}">
+						<c:set var="dejaNote" scope="session" value="true" />
+					</c:if>
 					<div class="comments-top-top top-grid-comment">
 						<div class="top-comment-right">
 							<ul>
@@ -105,7 +115,7 @@
 								<li><button class="reply" type="button"
 										onclick="toggle_div(this,'commentaire-${commentaire.idCom}');">Répondre</button></li>
 								<div id="commentaire-${commentaire.idCom }"
-									+  style="display: none;">
+									style="display: none;">
 									<form name="ReponseCommentaireServlet"
 										action="CommentaireServlet" method="POST">
 										<input type="hidden" name="Utilisateur"
@@ -120,21 +130,21 @@
 							</ul>
 							<p>${commentaire.contenuCom}</p>
 						</div>
-							<div class="clearfix"></div>
+						<div class="clearfix"></div>
 
-					<c:forEach items="${commentaire.getListeCommentairesReponses()}"
-						var="commentaireReponse">
-						<div class="comments-top-top top-grid-comment">
-							<div class="top-comment-right">
-								<ul>
-									<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
-									<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
-								</ul>
-								<p>${commentaireReponse.contenuCom}</p>
-								<div class="clearfix"></div>
+						<c:forEach items="${commentaire.getListeCommentairesReponses()}"
+							var="commentaireReponse">
+							<div class="comments-top-top top-grid-comment">
+								<div class="top-comment-right">
+									<ul>
+										<li><span class="left-at">${commentaireReponse.utilisateur.login}</span></li>
+										<li><span class="right-at">${commentaireReponse.dateCom}</span></li>
+									</ul>
+									<p>${commentaireReponse.contenuCom}</p>
+									<div class="clearfix"></div>
+								</div>
 							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
 					</div>
 				</c:forEach>
 			</div>
@@ -143,6 +153,7 @@
 
 			<div class="artical-commentbox">
 				<c:if test="${auteur != auteur1}">
+
 
 					<h3>Laisser un commentaire</h3>
 					<div class="table-form">
@@ -154,12 +165,16 @@
 							<input type='hidden' name="Test" value="${TEST.idTest}">
 							<textarea name="ContenuCom"
 								placeholder="Saisissez ici votre commentaire."></textarea>
-							<br> <label>Selectionner la note du test</label> <select
-								name="notes">
-								<c:forEach begin="1" end="5" var="i">
-									<option value="${i}">${i}</option>
-								</c:forEach>
-							</select> <input type="submit" value="Envoyer">
+							<c:if test="${dejaNote==false}">
+								<br>
+								<label>Noter le test</label>
+								<select name="notes">
+									<c:forEach begin="1" end="5" var="i">
+										<option value="${i}">${i}</option>
+									</c:forEach>
+								</select>
+							</c:if>
+							<input type="submit" value="Envoyer">
 						</form>
 					</div>
 				</c:if>

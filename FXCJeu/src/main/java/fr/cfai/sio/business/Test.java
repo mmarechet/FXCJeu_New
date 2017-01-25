@@ -29,7 +29,6 @@ public class Test
 	private String inconvenientJeu;
 	private String descriptionTest;
 	private String contenuTest;
-	private String imgTest;
 	private Jeu jeu;
 	private Utilisateur utilisateur;
 	private List<Image> listeImages;
@@ -59,7 +58,7 @@ public class Test
 	 *            Utilisateur du test
 	 */
 	public Test(int idTest, String titreTest, Date dateTest, short noteJeu, String avantageJeu, String inconvenientJeu, String descriptionTest,
-			String contenuTest, String imgTest, Jeu jeu, Utilisateur utilisateur)
+			String contenuTest, Jeu jeu, Utilisateur utilisateur)
 	{
 		super();
 		this.idTest = idTest;
@@ -70,7 +69,6 @@ public class Test
 		this.inconvenientJeu = inconvenientJeu;
 		this.descriptionTest = descriptionTest;
 		this.contenuTest = contenuTest;
-		this.imgTest = imgTest;
 		this.jeu = jeu;
 		this.utilisateur = utilisateur;
 		this.listeNotes = new ArrayList<>();
@@ -113,6 +111,7 @@ public class Test
 		return idTest;
 	}
 
+	
 	/**
 	 * Setteur ID du test
 	 * 
@@ -236,16 +235,6 @@ public class Test
 	public void setContenuTest(String contenuTest)
 	{
 		this.contenuTest = contenuTest;
-	}
-
-	public String getImgTest()
-	{
-		return imgTest;
-	}
-
-	public void setImgTest(String imgTest)
-	{
-		this.imgTest = imgTest;
 	}
 
 	/**
@@ -381,6 +370,7 @@ public class Test
 			}
 
 			chaineReturn = format.format(cumul_Note / tailleListe) + " / 5";
+			
 
 		}
 		else
