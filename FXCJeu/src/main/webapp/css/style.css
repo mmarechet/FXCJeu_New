@@ -725,7 +725,7 @@ ul.social-slide li i.mac {
 }
 
 a.sint:before {
-	background: url(../images/img-sp.png) no-repeat 71px -194px #F04709;
+	background: url(../images/img-sp.png) no-repeat 71px -194px #0080c0;
 	display: block;
 }
 
@@ -802,7 +802,7 @@ a.sint:before {
 }
 
 a.non:before {
-	background: #F04709;
+	background: #808080;
 }
 
 p.para {
@@ -828,7 +828,7 @@ p.para {
 }
 
 a.quod:before {
-	background: url(../images/img-sp.png) no-repeat 61px -191px #F04709;
+	background: url(../images/img-sp.png) no-repeat 61px -191px #0080c0;
 	display: block;
 }
 
@@ -1036,7 +1036,7 @@ ul.tab_list {
 }
 
 .newsletter input[type="submit"]:hover {
-	background: #F04709;
+	background: #0080c0;
 	color: #fff;
 }
 
@@ -1245,7 +1245,7 @@ h3.ghj {
 }
 
 .log form input[type=submit]:hover {
-	background: #F04709;
+	background: #0080c0;
 	transition: .5s all;
 	-webkit-transition: .5s all;
 	-o-transition: .5s all;
@@ -1309,7 +1309,7 @@ h3.ghj {
 
 .login-right a {
 	text-decoration: none;
-	background: #F04709;
+	background: #0080c0;
 	color: #ffffff;
 	font-size: 14px;
 	padding: 14px 40px;
@@ -1410,7 +1410,7 @@ h3.ghj {
 }
 
 .sign-up input[type="submit"]:hover {
-	background: #F04709;
+	background: #0080c0;
 	color: #fff;
 }
 /*-- //register --*/
@@ -1538,7 +1538,7 @@ p.lom {
 }
 
 .in-right input[type="submit"]:hover {
-	background: #F04709;
+	background: #0080c0;
 	color: #fff;
 }
 
@@ -1968,7 +1968,7 @@ p.lom {
 }
 
 .table-form input[type="submit"]:hover {
-	background: #F04709;
+	background: #0080c0;
 	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
 	-o-transition: 0.5s all;
@@ -2833,7 +2833,7 @@ p.lom {
 		margin: 2em 0 0;
 	}
 	a.sint:before {
-		background: url(../images/img-sp.png) no-repeat 48px -196px #F04709;
+		background: url(../images/img-sp.png) no-repeat 48px -196px #0080c0;
 	}
 	.blog-left-grid-right a {
 		padding: 7px 19px;
@@ -2844,7 +2844,7 @@ p.lom {
 		background: url(../images/img-sp.png) no-repeat 55px -195px #2198c3;
 	}
 	a.quod:before {
-		background: url(../images/img-sp.png) no-repeat 55px -195px #F04709;
+		background: url(../images/img-sp.png) no-repeat 55px -195px #0080c0;
 	}
 	h2.resp-accordion {
 		font-size: 14px;

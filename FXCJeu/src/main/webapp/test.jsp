@@ -43,7 +43,7 @@
 				</h3>
 
 				<h3>
-					<span class="label label-warning">Support : </span>
+					<span class="label label-warning">Support :</span>
 					<c:forEach items="${TEST.jeu.listeSupports}" var="support">
 						<span class="label label-warning">${support.getLibelleSupport()}</span>
 					</c:forEach>
