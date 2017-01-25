@@ -9,8 +9,7 @@ import fr.cfai.sio.business.Jeu;
  * @author mathieu
  *
  */
-public interface JeuDao
-{
+public interface JeuDao {
 	/**
 	 * Permet de récupérer un Objet Jeu en fonction de son ID
 	 * 
@@ -25,7 +24,5 @@ public interface JeuDao
 	 * 
 	 * @return Liste des jeux
 	 */
-	//public List<Jeu> findAllJeux();
-
 	public List<Jeu> findAllJeux();
 }
