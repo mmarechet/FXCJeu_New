@@ -20,9 +20,14 @@
 					<span class="label label-info">${JEU.classification.getLibelleClassification()}</span>
 				</h3>
 				<h3>
+					<span class="label label-warning">Support :</span>
 					<c:forEach items="${JEU.listeSupports}" var="support">
 						<span class="label label-warning">${support.getLibelleSupport()}</span>
 					</c:forEach>
+
+				</h3>
+				<h3>
+					<span class="label label-new">Modèle économique :</span>
 					<c:forEach items="${JEU.listeModeleEconomiques}" var="modeleEco">
 						<span class="label label-new">${modeleEco.getLibelleModeleEco()}</span>
 					</c:forEach>
@@ -40,13 +45,12 @@
 			<div class="artical-links">
 				<ul>
 					<li><small> </small><span>Date de sortie :</span></li>
-					<li><small> </small><span>Date de sortie :${JEU.dateSortieJeu} </span></li>
-
+					<li><small> </small><span> ${JEU.dateSortieJeu} </span></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
-		<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

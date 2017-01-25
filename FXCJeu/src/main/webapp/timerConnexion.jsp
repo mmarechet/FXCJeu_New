@@ -8,8 +8,8 @@
 	media="all" />
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<meta http-equiv="refresh" content="1.4; URL=accueil.jsp">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta http-equiv="refresh" content="1.4; URL=accueil.jsp">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta http-equiv="refresh" content="2; URL=accueil.jsp">
 </head>
@@ -25,6 +25,8 @@
 					vers la page d'accueil dans quelques secondes. Veuillez patienter.
 
 				</div>
+				<img class="img-responsiveTest center-block"
+					src="images/testijeux.png" alt=" " />
 			</div>
 		</div>
 	</div>
